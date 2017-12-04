@@ -34,7 +34,7 @@ public class BookList_Activity extends AppCompatActivity {
      */
     private void initBooks(){
         for (int i=0; i<20; i++) {
-            Book book = new Book(1,"《人间炼狱》","胡歌","上午有印书馆",2,"FHAJSKLDKSLKFHASLKJLK",16,0,1,2,23.6f,"http://c.hiphotos.baidu.com/image/pic/item/3b87e950352ac65c7ad3bf96f1f2b21192138a05.jpg");
+            Book book = new Book(1,"《人间炼狱》","胡歌","上午有印书馆",2,"FHAJSKLDKSLKFHASLKJLK",16,0,1,2,23.6f,"http://www.qqkubao.com/uploadfile/2014/10/1/20141011173953149.jpg");
             bookList.add(i, book);
         }
     }
