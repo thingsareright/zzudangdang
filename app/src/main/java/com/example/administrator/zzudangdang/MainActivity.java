@@ -12,7 +12,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //测试用活动跳转
+        //TODO 测试用活动跳转，下面的两行等待删除
         Intent intent = new Intent(this, BookList_Activity.class);
         startActivity(intent);
     }

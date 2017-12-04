@@ -156,7 +156,6 @@
 
         <!-- 下拉的RecyclerView-->
         <LinearLayout
-            android:id="@+id/book_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">

@@ -2,7 +2,7 @@ package com.example.administrator.zzudangdang.dao.entity;
 
 /**
  * Created by Administrator on 2017/12/4 0004.
- * 数据库book的映射java文件
+ * 数据库book的映射java文件，超完全映射，中间加了个price
  */
 
 public class Book {
@@ -16,8 +16,11 @@ public class Book {
     private int paper;      //纸张（0表示胶版纸）
     private int book_package;   //包装方式（0表示平装，1表示精装，必须向下兼容）
     private int book_kind;  //书籍分类（具体的类型还没有定义）
+    private float book_price;   //为了方便，这里与数据库表并不一样
+    private String book_picture;    //同上，这里存储第一张搜索到的图片
 
-    public Book(int id, String book_name, String writter, String press, int version, String ISBN, int format, int paper, int book_package, int book_kind) {
+
+    public Book(int id, String book_name, String writter, String press, int version, String ISBN, int format, int paper, int book_package, int book_kind, float book_price, String book_picture) {
         this.id = id;
         this.book_name = book_name;
         this.writter = writter;
@@ -28,6 +31,8 @@ public class Book {
         this.paper = paper;
         this.book_package = book_package;
         this.book_kind = book_kind;
+        this.book_price = book_price;
+        this.book_picture = book_picture;
     }
 
     public int getId() {
@@ -108,5 +113,21 @@ public class Book {
 
     public void setBook_kind(int book_kind) {
         this.book_kind = book_kind;
+    }
+
+    public float getBook_price() {
+        return book_price;
+    }
+
+    public void setBook_price(float book_price) {
+        this.book_price = book_price;
+    }
+
+    public String getBook_picture() {
+        return book_picture;
+    }
+
+    public void setBook_picture(String book_picture) {
+        this.book_picture = book_picture;
     }
 }

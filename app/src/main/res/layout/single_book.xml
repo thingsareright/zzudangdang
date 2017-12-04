@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 这个是搜索结果列表界面每一个商品列表的内容-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="125dp">
+    <ImageView
+        android:id="@+id/book_picture"
+        android:layout_width="0dp"
+        android:layout_weight="2"
+        android:layout_height="match_parent" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="5"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/book_name"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/book_writter"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <!-- TODO 当前先默认全部当当自营，以后再改,当当自营的那个图标待添加-->
+        <Button
+            style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
+            android:layout_width="75dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@drawable/imagedangdangself"
+            android:text="当当自营"
+            android:visibility="visible" />
+
+        <TextView
+            android:id="@+id/book_price"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <!--  存放好评率和评价人数-->
+            <TextView
+                android:id="@+id/percent_peoplenumber"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="6" />
+            <!-- TODO 小购物车的图标 待添加-->
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
