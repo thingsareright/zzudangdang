@@ -16,7 +16,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".GaoJiujiu.BookList_Activity"></activity>
+        <activity android:name=".gaojiujiu.BookList_Activity"></activity>
     </application>
 
 </manifest>
