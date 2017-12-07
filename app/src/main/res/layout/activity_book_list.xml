@@ -1,118 +1,132 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_height="fill_parent"
-    android:layout_width="fill_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-    <LinearLayout 
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context="com.example.administrator.zzudangdang.booklist.BookList_Activity">
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="horizontal">
-            <!-- 第三方库搜索栏，git地址 https://github.com/Carson-Ho/Search_Layout.git -->
-            <scut.carson_ho.searchview.SearchView
-                android:layout_width="0dp"
-                android:layout_weight="7"
-                android:layout_height="wrap_content"
-                android:id="@+id/booklist_search_view"
-                app:textSizeSearch="5dp"
-                app:textColorSearch="#9b9b9b"
-                app:textHintSearch="输入搜索关键字"
-                app:searchBlockHeight="150"
-                app:searchBlockColor="#ffffff">
-            </scut.carson_ho.searchview.SearchView>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="2"
-                android:layout_height="match_parent"
-                android:layout_marginTop="10dp"
-                android:text="搜索"/>
-        </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center|left">
 
-        <LinearLayout
-            android:orientation="horizontal"
+        <ImageView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <Button
-                android:id="@+id/MoRen"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="#ffff"
-                android:text="默认" />
-
-            <Button
-                android:id="@+id/Quantity"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="销量"
-                android:background="#ffff"></Button>
-            <Button
-                android:id="@+id/Price"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="价格"
-                android:background="#ffff"/>
-            <!--价格的上下变动那个未实现-->
-            <Button
-                android:id="@+id/HaoPing"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="#ffff"
-                android:text="好评"/>
-            <Button
-                android:id="@+id/Newest"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="最新"
-                android:background="#ffff"/>
-
-            <Button
-                android:id="@+id/GeJv"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="口"
-                android:background="#ffff"/>  <!--设置观看商品模式，还有添加一个监听器，
-            监听器要实现当前位置符号的变化，还有下面商品的浏览模式的变化-->
-        </LinearLayout>
-
-
-        <!-- 下拉的RecyclerView-->
+            android:layout_height="30dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/pic_return"/>
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/booklist_recycler_view_result"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-            </android.support.v7.widget.RecyclerView>
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:orientation="horizontal"
+            android:background="@drawable/roundview"
+
+            android:gravity="center">
+
+            <ImageView
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/pic_search"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="全部"/>
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="10dp"
+                android:ems="20"/>
+            <ImageView
+                android:layout_marginEnd="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/pic_cancel2"/>
+
+
         </LinearLayout>
-        <!-- 下拉的RecyclerView-->
-        <LinearLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/booklist_recycler_view_think"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-            </android.support.v7.widget.RecyclerView>
-        </LinearLayout>
+            android:textSize="10dp"
+            android:layout_marginLeft="5dp"
+            android:text="搜索"/>
     </LinearLayout>
-</ScrollView>
 
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
+        <Button
+            android:id="@+id/MoRen"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#ffff"
+            android:text="默认" />
+
+        <Button
+            android:id="@+id/Quantity"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="销量"
+            android:background="#ffff"></Button>
+        <Button
+            android:id="@+id/Price"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="价格"
+            android:background="#ffff"/>
+        <!--价格的上下变动那个未实现-->
+        <Button
+            android:id="@+id/HaoPing"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#ffff"
+            android:text="好评"/>
+        <Button
+            android:id="@+id/Newest"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="最新"
+            android:background="#ffff"/>
+
+        <Button
+            android:id="@+id/GeJv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="口"
+            android:background="#ffff"/>  <!--设置观看商品模式，还有添加一个监听器，
+            监听器要实现当前位置符号的变化，还有下面商品的浏览模式的变化-->
+    </LinearLayout>
+
+    <!-- 下拉的RecyclerView-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/booklist_recycler_view_result"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </android.support.v7.widget.RecyclerView>
+    </LinearLayout>
+    <!-- 下拉的RecyclerView-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/booklist_recycler_view_think"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </android.support.v7.widget.RecyclerView>
+    </LinearLayout>
+</LinearLayout>
