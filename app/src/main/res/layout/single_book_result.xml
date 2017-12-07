@@ -3,26 +3,32 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     android:layout_width="match_parent"
+    android:background="#ffffff"
     android:layout_height="125dp">
     <ImageView
         android:id="@+id/book_picture"
         android:layout_width="0dp"
         android:layout_weight="2"
         android:layout_height="match_parent" />
-
     <LinearLayout
+        android:layout_width="15dp"
+        android:layout_height="match_parent"></LinearLayout>
+    <LinearLayout
+        android:background="#ffffff"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="5"
         android:orientation="vertical">
 
         <TextView
+            android:background="#ffffff"
             android:id="@+id/book_name"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1" />
 
         <TextView
+            android:background="#ffffff"
             android:id="@+id/book_writter"
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -30,6 +36,7 @@
 
         <!-- TODO 当前先默认全部当当自营，以后再改,当当自营的那个图标待添加-->
         <Button
+
             style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
             android:layout_width="75dp"
             android:layout_height="0dp"
@@ -39,6 +46,7 @@
             android:visibility="visible" />
 
         <TextView
+            android:background="#ffffff"
             android:id="@+id/book_price"
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -48,10 +56,12 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
+            android:background="#ffffff"
             android:orientation="horizontal">
 
             <!--  存放好评率和评价人数-->
             <TextView
+                android:background="#ffffff"
                 android:id="@+id/percent_peoplenumber"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -59,8 +69,19 @@
             <!-- TODO 小购物车的图标 待添加-->
             <ImageView
                 android:layout_width="0dp"
+                android:background="#ffffff"
                 android:layout_height="match_parent"
                 android:layout_weight="1" />
+
         </LinearLayout>
+
+
+        <!-- 一条浅灰色的分割线 -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#aeaeae" />
+
+
     </LinearLayout>
 </LinearLayout>

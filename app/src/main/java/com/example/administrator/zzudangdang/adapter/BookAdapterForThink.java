@@ -12,20 +12,23 @@ import com.example.administrator.zzudangdang.R;
 import com.example.administrator.zzudangdang.dao.entity.Book;
 
 import java.util.List;
-import java.util.Random;
 
 /**
- * Created by Administrator on 2017/12/4 0004.
+ * Created by Administrator on 2017/12/7 0007.
  */
 
-public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder> {
+public class BookAdapterForThink extends RecyclerView.Adapter<BookAdapterForThink.ViewHolder> {
 
-    private  List<Book> bookList;
+    private List<Book> bookList;
+
+    public BookAdapterForThink(List<Book> bookList) {
+        this.bookList = bookList;
+    }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.single_book,parent,false);
-        ViewHolder holder = new ViewHolder(view);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.single_book_think,parent,false);
+        BookAdapterForThink.ViewHolder holder = new BookAdapterForThink.ViewHolder(view);
         return holder;
     }
 
@@ -65,10 +68,4 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder> {
 
 
     }
-
-    public BookAdapter(List<Book> bookList) {
-        this.bookList = bookList;
-    }
-
-
 }

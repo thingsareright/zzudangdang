@@ -1,58 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.example.administrator.zzudangdang.gaojiujiu.BookList_Activity">
-
+    android:layout_height="fill_parent"
+    android:layout_width="fill_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout 
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="com.example.administrator.zzudangdang.booklist.BookList_Activity">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
             android:orientation="horizontal">
-            <Button
-                android:id="@+id/Return1"
+            <!-- 第三方库搜索栏，git地址 https://github.com/Carson-Ho/Search_Layout.git -->
+            <scut.carson_ho.searchview.SearchView
                 android:layout_width="0dp"
-                android:layout_height="30dp"
-                android:layout_weight="1"
-                android:background="#ffff"
-                android:text="ღ" />
+                android:layout_weight="7"
+                android:layout_height="wrap_content"
+                android:id="@+id/booklist_search_view"
+                app:textSizeSearch="5dp"
+                app:textColorSearch="#9b9b9b"
+                app:textHintSearch="输入搜索关键字"
+                app:searchBlockHeight="150"
+                app:searchBlockColor="#ffffff">
+            </scut.carson_ho.searchview.SearchView>
 
-            <EditText
-                android:id="@+id/SouSuo"
+            <TextView
                 android:layout_width="0dp"
-                android:layout_height="30dp"
-                android:layout_weight="9"
-                android:background="#aabb"
-                android:text="放大镜"
-                android:hint="三体+共多少个结果" />
-
-            <Button
-                android:id="@+id/ShaiXuan"
-                android:layout_width="0dp"
-                android:layout_height="30dp"
-                android:layout_weight="1"
-                android:background="#ffff"
-                android:text="筛选" />
-            <Button
-                android:id="@+id/FenLei"
-                android:layout_width="0dp"
-                android:layout_height="30dp"
-                android:layout_weight="1"
-                android:background="#ffff"
-                android:text="分类" />
+                android:layout_weight="2"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:text="搜索"/>
         </LinearLayout>
+
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
+
             <Button
                 android:id="@+id/MoRen"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="#ffff"
-                android:text="默认"/>
+                android:text="默认" />
+
             <Button
                 android:id="@+id/Quantity"
                 android:layout_width="0dp"
@@ -92,67 +88,7 @@
                 android:background="#ffff"/>  <!--设置观看商品模式，还有添加一个监听器，
             监听器要实现当前位置符号的变化，还有下面商品的浏览模式的变化-->
         </LinearLayout>
-        <TextView
-            android:id="@+id/Tip1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="您是不是找："/>
-        <!--实现推荐，并对他们实现监听器，且推荐内容，但是那个不知道咋弄-->
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center">
-            <Button
-                android:id="@+id/TuiJian1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="#ffff"
-                android:text="推荐1"/>
-            <Button
-                android:id="@+id/TuiJian2"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="推荐2"
-                android:background="#ffff"/>
-            <Button
-                android:id="@+id/TuiJian3"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="推荐3"
-                android:background="#ffff"/>
-        </LinearLayout>
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:background="#aabb">
-            <Button
-                android:id="@+id/TuiJian4"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="推荐4"
-                android:background="#ffff"
-                />
-            <Button
-                android:id="@+id/TuiJian5"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="推荐5"
-                android:background="#ffff"/>
-            <Button
-                android:id="@+id/TuiJian6"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="推荐6"
-                android:background="#ffff"/>
-        </LinearLayout>
+
 
         <!-- 下拉的RecyclerView-->
         <LinearLayout
@@ -160,10 +96,23 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
             <android.support.v7.widget.RecyclerView
-                android:id="@+id/booklist_recycler_view"
+                android:id="@+id/booklist_recycler_view_result"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
             </android.support.v7.widget.RecyclerView>
         </LinearLayout>
-
+        <!-- 下拉的RecyclerView-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/booklist_recycler_view_think"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            </android.support.v7.widget.RecyclerView>
+        </LinearLayout>
     </LinearLayout>
+</ScrollView>
+
+

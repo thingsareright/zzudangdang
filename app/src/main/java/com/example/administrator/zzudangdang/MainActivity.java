@@ -4,7 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.example.administrator.zzudangdang.gaojiujiu.BookList_Activity;
+import com.example.administrator.zzudangdang.booklist.BookList_Activity;
 
 public class MainActivity extends AppCompatActivity {
 
