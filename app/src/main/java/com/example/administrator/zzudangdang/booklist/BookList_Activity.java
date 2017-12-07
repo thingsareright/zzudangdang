@@ -48,9 +48,7 @@ public class BookList_Activity extends AppCompatActivity implements View.OnClick
             recyclerViewForResult.setAdapter(bookAdapterForResult);
         }
 
-
-
-
+        //下面加载联想的界面
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this,2);
         recyclerViewForThink.setLayoutManager(gridLayoutManager);
         BookAdapterForThink bookAdapterForThink = new BookAdapterForThink(bookListThink);
@@ -61,7 +59,7 @@ public class BookList_Activity extends AppCompatActivity implements View.OnClick
      * 这里的init方法只是测试用的init方法，是需要更改和删除的
      */
     private void initBooks(){
-        for (int i=0; i<20; i++) {
+        for (int i=0; i<5; i++) {
             Book book = new Book(1,"《人间炼狱》","胡歌","上午有印书馆",2,"FHAJSKLDKSLKFHASLKJLK",16,0,1,2,23.6f,"http://www.qqkubao.com/uploadfile/2014/10/1/20141011173953149.jpg");
             bookListResult.add(i, book);
             bookListThink.add(i,book);

@@ -35,7 +35,7 @@ public class BookAdapterForThink extends RecyclerView.Adapter<BookAdapterForThin
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         Book book = bookList.get(position);
-        //TODO 图片采用Glide添加，注意检查这里的context参数对不对
+        //图片采用Glide添加，注意检查这里的context参数对不对
         Glide.with(holder.book_picture.getContext()).load(book.getBook_picture()).placeholder(R.mipmap.ic_launcher).into(holder.book_picture);
         holder.book_name.setText(book.getBook_name());
         holder.book_writter.setText(book.getWritter());
