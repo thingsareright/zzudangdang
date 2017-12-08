@@ -7,14 +7,22 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import com.example.administrator.zzudangdang.R;
 import com.example.administrator.zzudangdang.adapter.BookAdapterForResult;
 import com.example.administrator.zzudangdang.adapter.BookAdapterForThink;
 import com.example.administrator.zzudangdang.dao.entity.Book;
+import com.example.administrator.zzudangdang.util.ConstantUtil;
+import com.example.administrator.zzudangdang.util.JSONUtil;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 public class BookList_Activity extends AppCompatActivity implements View.OnClickListener {
 
@@ -23,18 +31,25 @@ public class BookList_Activity extends AppCompatActivity implements View.OnClick
     private RecyclerView recyclerViewForResult;     //展示结果的recyclerview
     private RecyclerView recyclerViewForThink;      //展示联想的recyclerview
     private static boolean flag = true; //true为线性布局，false为网格布局
+    private TextView searchView;        //搜索的文本框
+    private EditText searchKeyWord;         //输入搜索的关键词的文本编辑框
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book_list);
-        //TODO 下面的这些代码都是测试用的
-        initBooks();
+
         recyclerViewForResult = (RecyclerView) findViewById(R.id.booklist_recycler_view_result);
         recyclerViewForThink = (RecyclerView) findViewById(R.id.booklist_recycler_view_think);
 
         Button button = (Button) findViewById(R.id.GeJv);
         button.setOnClickListener(this);
+
+        searchView = (TextView) findViewById(R.id.search);
+        searchView.setOnClickListener(this);
+        searchKeyWord = (EditText) findViewById(R.id.keyword);
 
         if (flag == true){
             LinearLayoutManager layoutManager = new LinearLayoutManager(this);
@@ -48,6 +63,9 @@ public class BookList_Activity extends AppCompatActivity implements View.OnClick
             recyclerViewForResult.setAdapter(bookAdapterForResult);
         }
 
+        //TODO 这里的搜索这是一个例子，要删的
+        sendRequestForBookResult("0");
+
         //下面加载联想的界面
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this,2);
         recyclerViewForThink.setLayoutManager(gridLayoutManager);
@@ -55,16 +73,8 @@ public class BookList_Activity extends AppCompatActivity implements View.OnClick
         recyclerViewForThink.setAdapter(bookAdapterForThink);
     }
 
-    /**TODO
-     * 这里的init方法只是测试用的init方法，是需要更改和删除的
-     */
-    private void initBooks(){
-        for (int i=0; i<5; i++) {
-            Book book = new Book(1,"《人间炼狱》","胡歌","上午有印书馆",2,"FHAJSKLDKSLKFHASLKJLK",16,0,1,2,23.6f,"http://www.qqkubao.com/uploadfile/2014/10/1/20141011173953149.jpg");
-            bookListResult.add(i, book);
-            bookListThink.add(i,book);
-        }
-    }
+
+
 
     @Override
     public void onClick(View view) {
@@ -83,9 +93,57 @@ public class BookList_Activity extends AppCompatActivity implements View.OnClick
                     recyclerViewForResult.setAdapter(bookAdapterForResult);
                 }
                 break;
+            case R.id.search:
+                sendRequestForBookResult(searchKeyWord.getText().toString());
+                System.out.println(searchKeyWord.getText().toString());
+                break;
             default:
                 break;
         }
+    }
+
+    /**
+     * 这个方法用于向网络发送请求以刷新页面
+     */
+    private void sendRequestForBookResult(final String keyword) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    OkHttpClient client = new OkHttpClient();
+                    Request request = new Request.Builder()
+                            .url(ConstantUtil.getServer() + "/book/bookForResult?name=" + keyword)
+                            .build();
+                    Response response = client.newCall(request).execute();
+                    String jsonData = response.body().string();
+                    List<Book> books = JSONUtil.parseBookWithGSON(jsonData);
+                    changeBookListForResult(books);
+                } catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+    }
+
+    private void changeBookListForResult(final List<Book> books){
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                bookListResult = books;
+                if (flag == true){
+                    LinearLayoutManager layoutManager = new LinearLayoutManager(BookList_Activity.this);
+                    recyclerViewForResult.setLayoutManager(layoutManager);
+                    BookAdapterForResult bookAdapterForResult = new BookAdapterForResult(bookListResult);
+                    recyclerViewForResult.setAdapter(bookAdapterForResult);
+
+                } else {
+                    GridLayoutManager gridLayoutManager = new GridLayoutManager(BookList_Activity.this, 2);
+                    recyclerViewForResult.setLayoutManager(gridLayoutManager);
+                    BookAdapterForThink bookAdapterForResult = new BookAdapterForThink(bookListResult);
+                    recyclerViewForResult.setAdapter(bookAdapterForResult);
+                }
+            }
+        });
     }
 }
 

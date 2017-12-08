@@ -1,11 +1,14 @@
 package com.example.administrator.zzudangdang.dao.entity;
 
+import java.io.Serializable;
+
 /**
  * Created by Administrator on 2017/12/4 0004.
  * 数据库book的映射java文件，超完全映射，中间加了个price
+ * 注意这个文件现在是与web端传输回来的一样了，事实上我是直接复制过来的
  */
 
-public class Book {
+public class Book implements Serializable{
     private int id; //书籍的唯一标识（主键）
     private String book_name;   //书名
     private String writter; //作者
@@ -18,7 +21,15 @@ public class Book {
     private int book_kind;  //书籍分类（具体的类型还没有定义）
     private float book_price;   //为了方便，这里与数据库表并不一样
     private String book_picture;    //同上，这里存储第一张搜索到的图片
+    private int boss_id;
 
+    public int getBoss_id() {
+        return boss_id;
+    }
+
+    public void setBoss_id(int boss_id) {
+        this.boss_id = boss_id;
+    }
 
     public Book(int id, String book_name, String writter, String press, int version, String ISBN, int format, int paper, int book_package, int book_kind, float book_price, String book_picture) {
         this.id = id;
@@ -33,6 +44,10 @@ public class Book {
         this.book_kind = book_kind;
         this.book_price = book_price;
         this.book_picture = book_picture;
+    }
+
+    public Book() {
+
     }
 
     public int getId() {
