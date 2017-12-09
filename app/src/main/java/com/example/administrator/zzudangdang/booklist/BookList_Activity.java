@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -51,6 +52,7 @@ public class BookList_Activity extends AppCompatActivity implements View.OnClick
         searchView.setOnClickListener(this);
         searchKeyWord = (EditText) findViewById(R.id.keyword);
 
+        /*Log.e("error", "123");
         if (flag == true){
             LinearLayoutManager layoutManager = new LinearLayoutManager(this);
             recyclerViewForResult.setLayoutManager(layoutManager);
@@ -61,16 +63,15 @@ public class BookList_Activity extends AppCompatActivity implements View.OnClick
             recyclerViewForResult.setLayoutManager(gridLayoutManager);
             BookAdapterForThink bookAdapterForResult = new BookAdapterForThink(bookListResult);
             recyclerViewForResult.setAdapter(bookAdapterForResult);
-        }
+        }*/
 
-        //TODO 这里的搜索这是一个例子，要删的
-        sendRequestForBookResult("0");
 
+/*
         //下面加载联想的界面
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this,2);
         recyclerViewForThink.setLayoutManager(gridLayoutManager);
         BookAdapterForThink bookAdapterForThink = new BookAdapterForThink(bookListThink);
-        recyclerViewForThink.setAdapter(bookAdapterForThink);
+        recyclerViewForThink.setAdapter(bookAdapterForThink);*/
     }
 
 
@@ -95,6 +96,7 @@ public class BookList_Activity extends AppCompatActivity implements View.OnClick
                 break;
             case R.id.search:
                 sendRequestForBookResult(searchKeyWord.getText().toString());
+                Log.d("search",searchKeyWord.getText().toString());
                 System.out.println(searchKeyWord.getText().toString());
                 break;
             default:
@@ -116,6 +118,7 @@ public class BookList_Activity extends AppCompatActivity implements View.OnClick
                             .build();
                     Response response = client.newCall(request).execute();
                     String jsonData = response.body().string();
+                    Log.d("we",jsonData);   //todo
                     List<Book> books = JSONUtil.parseBookWithGSON(jsonData);
                     changeBookListForResult(books);
                 } catch (Exception e){
