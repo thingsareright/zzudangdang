@@ -32,7 +32,7 @@ public class BookList_Activity extends AppCompatActivity implements View.OnClick
     private RecyclerView recyclerViewForResult;     //展示结果的recyclerview
     private RecyclerView recyclerViewForThink;      //展示联想的recyclerview
     private static boolean flag = true; //true为线性布局，false为网格布局
-    private TextView searchView;        //搜索的文本框
+    private Button searchView;        //搜索的文本框
     private EditText searchKeyWord;         //输入搜索的关键词的文本编辑框
 
 
@@ -48,7 +48,7 @@ public class BookList_Activity extends AppCompatActivity implements View.OnClick
         Button button = (Button) findViewById(R.id.GeJv);
         button.setOnClickListener(this);
 
-        searchView = (TextView) findViewById(R.id.search);
+        searchView = (Button) findViewById(R.id.search);
         searchView.setOnClickListener(this);
         searchKeyWord = (EditText) findViewById(R.id.keyword);
 
@@ -116,9 +116,10 @@ public class BookList_Activity extends AppCompatActivity implements View.OnClick
                     Request request = new Request.Builder()
                             .url(ConstantUtil.getServer() + "/book/bookForResult?name=" + keyword)
                             .build();
+                    System.out.println(ConstantUtil.getServer() + "/book/bookForResult?name=" + keyword);
                     Response response = client.newCall(request).execute();
                     String jsonData = response.body().string();
-                    Log.d("we",jsonData);   //todo
+                    Log.d("MySQL",jsonData);   //todo
                     List<Book> books = JSONUtil.parseBookWithGSON(jsonData);
                     changeBookListForResult(books);
                 } catch (Exception e){
