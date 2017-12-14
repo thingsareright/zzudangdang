@@ -36,7 +36,7 @@
                 android:layout_weight="5"
                 android:gravity="center">
                 <Button
-                    android:id="@+id/商品"
+                    android:id="@+id/thing"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:text="商品"
@@ -44,7 +44,7 @@
                     android:layout_weight="1"
                     android:textSize="12dp"/>
                 <Button
-                    android:id="@+id/详情"
+                    android:id="@+id/introduce"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:text="详情"
@@ -52,7 +52,7 @@
                     android:layout_weight="1"
                     android:textSize="12dp"/>
                 <Button
-                    android:id="@+id/评论"
+                    android:id="@+id/comments"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:text="评论"
@@ -60,7 +60,7 @@
                     android:layout_weight="1"
                     android:textSize="12dp"/>
                 <Button
-                    android:id="@+id/推荐"
+                    android:id="@+id/recommends"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:text="推荐"
@@ -93,7 +93,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1">
-        <include layout= "@layout/shangpinye1_dd01"/>
+        <include layout= "@layout/singlebookimage_main"/>
     </ScrollView>
 
 

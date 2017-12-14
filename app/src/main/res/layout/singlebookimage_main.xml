@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
-            android:id="@+id/shuming_lj"
+            android:id="@+id/book_name_lj"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="14sp"
@@ -29,7 +29,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
-            android:id="@+id/jiage_lj"
+            android:id="@+id/price_lj"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="￥358.00"
@@ -37,7 +37,7 @@
             android:textSize="17sp"
             android:paddingLeft="10dp"/>
         <TextView
-            android:id="@+id/zhekou_lj"
+            android:id="@+id/discount_lj"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="(8.92折)"
@@ -49,7 +49,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
-            android:id="@+id/Vjiage_lj"
+            android:id="@+id/Vprice_lj"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="店铺VIP￥340.10"
@@ -70,7 +70,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
-            android:id="@+id/yuanjia_lj"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="定价"
@@ -78,7 +77,7 @@
             android:paddingLeft="10dp"
             android:textColor="#bfbfbf"/>
         <TextView
-            android:id="@+id/pingfen_lj"
+            android:id="@+id/old_price_lj"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="￥401.70"
@@ -106,7 +105,7 @@
                 android:textColor="#ff8c00"
                 android:textSize="17sp"/>
             <TextView
-                android:id="@+id/renshu_lj"
+                android:id="@+id/people_num_lj"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="0人评分"
@@ -143,7 +142,7 @@
             android:paddingLeft="10dp"
             android:paddingRight="10dp"/>
         <TextView
-            android:id="@+id/zuozhe_lj"
+            android:id="@+id/writter_lj"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -178,7 +177,7 @@
             android:paddingLeft="10dp"
             android:paddingRight="10dp"/>
         <TextView
-            android:id="@+id/chubanshe_lj"
+            android:id="@+id/press_lj"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -213,7 +212,7 @@
             android:paddingLeft="10dp"
             android:paddingRight="10dp"/>
         <TextView
-            android:id="@+id/fenlei_lj"
+            android:id="@+id/king_lj"
             android:layout_gravity="center"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -319,7 +318,7 @@
         android:layout_width="match_parent"
         android:layout_height="40sp">
         <TextView
-            android:id="@+id/duanping_lj"
+            android:id="@+id/short_comment_lj"
             android:layout_gravity="center"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -372,14 +371,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <ImageView
-            android:id="@+id/tubiao_lj"
+            android:id="@+id/boss_image_lj"
             android:layout_gravity="center"
             android:layout_margin="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@mipmap/ic_launcher_round"/>
         <TextView
-            android:id="@+id/dianming_lj"
+            android:id="@+id/boss_name_lj"
             android:layout_gravity="center"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -424,14 +423,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
                 <TextView
-                    android:id="@+id/miaozhi_lj"
+                    android:id="@+id/describle_lj"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="5.00"
                     android:textSize="13sp"
                     android:textColor="#bfbfbf" />
                 <TextView
-                    android:id="@+id/miaoshu_lj"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="高"
@@ -459,14 +457,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
                 <TextView
-                    android:id="@+id/fuzhi_lj"
+                    android:id="@+id/serve_lj"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="5.00"
                     android:textSize="13sp"
                     android:textColor="#bfbfbf" />
                 <TextView
-                    android:id="@+id/fuwu_lj"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="高"
@@ -494,14 +491,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
                 <TextView
-                    android:id="@+id/fazhi_lj"
+                    android:id="@+id/send_lj"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="5.00"
                     android:textSize="13sp"
                     android:textColor="#bfbfbf" />
                 <TextView
-                    android:id="@+id/fahuo_lj"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="高"

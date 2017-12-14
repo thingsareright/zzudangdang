@@ -1,6 +1,7 @@
 package com.example.administrator.zzudangdang.util;
 
 import com.example.administrator.zzudangdang.dao.entity.Book;
+import com.example.administrator.zzudangdang.dao.entity.BookToClientforSingleBook;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -22,5 +23,16 @@ public class JSONUtil {
         Gson gson = new Gson();
         List<Book> bookList = gson.fromJson(jsonData, new TypeToken<List<Book>>(){}.getType());
         return bookList;
+    }
+
+    /**
+     * 这个方法用于解析商品详情界面需要返回的数据
+     * @param jsonData
+     * @return
+     */
+    public static BookToClientforSingleBook parseSingleBookWithGSON(String jsonData) {
+        Gson gson = new Gson();
+        BookToClientforSingleBook book = gson.fromJson(jsonData, BookToClientforSingleBook.class);
+        return book;
     }
 }
