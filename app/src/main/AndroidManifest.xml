@@ -20,6 +20,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".booklist.BookList_Activity"></activity>
+        <activity android:name=".dd01.dd01"></activity>
     </application>
 
 </manifest>
