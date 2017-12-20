@@ -21,6 +21,7 @@
         </activity>
         <activity android:name=".booklist.BookList_Activity"></activity>
         <activity android:name=".singlebook.SingleBookActivity"></activity>
+        <activity android:name=".gaoMade.UserInformation"></activity>
     </application>
 
 </manifest>
