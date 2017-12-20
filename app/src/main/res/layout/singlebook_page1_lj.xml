@@ -25,15 +25,15 @@
                         android:id="@+id/book_image1_lj"
                         android:layout_marginLeft="60dp"
                         android:layout_marginRight="40dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_width="300dp"
+                        android:layout_height="200dp"
                         android:src="@drawable/book"/>
                     <ImageView
                         android:id="@+id/book_image2_lj"
                         android:layout_marginLeft="60dp"
                         android:layout_marginRight="40dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="300dp"
+                        android:layout_height="200dp"
                         android:src="@drawable/book1"/>
                 </LinearLayout>
             </HorizontalScrollView>

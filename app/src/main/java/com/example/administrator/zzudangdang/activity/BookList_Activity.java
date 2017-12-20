@@ -1,4 +1,4 @@
-package com.example.administrator.zzudangdang.booklist;
+package com.example.administrator.zzudangdang.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,7 +9,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import com.example.administrator.zzudangdang.R;
 import com.example.administrator.zzudangdang.adapter.BookAdapterForResult;
@@ -40,7 +39,7 @@ public class BookList_Activity extends AppCompatActivity implements View.OnClick
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_book_list);
+        setContentView(R.layout.activity_book_search);
 
         recyclerViewForResult = (RecyclerView) findViewById(R.id.booklist_recycler_view_result);
         recyclerViewForThink = (RecyclerView) findViewById(R.id.booklist_recycler_view_think);

@@ -1,4 +1,4 @@
-package com.example.administrator.zzudangdang.liangMade;
+package com.example.administrator.zzudangdang.adapter;
 
 import android.view.View;
 import android.view.ViewGroup;

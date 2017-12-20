@@ -1,19 +1,20 @@
-package com.example.administrator.zzudangdang.liangMade;
+package com.example.administrator.zzudangdang.activity;
 
+import android.content.Intent;
 import android.graphics.Color;
-import android.media.Image;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.bumptech.glide.Glide;
 import com.example.administrator.zzudangdang.R;
+import com.example.administrator.zzudangdang.adapter.RollHomeAdapter;
 import com.jude.rollviewpager.RollPagerView;
 import com.jude.rollviewpager.hintview.ColorPointHintView;
 
-import java.util.ArrayList;
-
-public class MainActivity extends AppCompatActivity {
+public class Home_Activity extends AppCompatActivity {
     ImageView imageView;
     ImageView imageView1;
     ImageView imageView2;
@@ -25,10 +26,12 @@ public class MainActivity extends AppCompatActivity {
     ImageView imageView8;
     RollPagerView mRollViewPager;
 
+    LinearLayout linearLayout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main_layout);
+        setContentView(R.layout.activity_home_main);
 
         imageView = (ImageView) findViewById(R.id.homeimage1);
         imageView1 = (ImageView) findViewById(R.id.homeimage2);
@@ -39,7 +42,14 @@ public class MainActivity extends AppCompatActivity {
         imageView6 = (ImageView) findViewById(R.id.homeimage7);
         imageView7 = (ImageView) findViewById(R.id.homeimage8);
         imageView8 = (ImageView) findViewById(R.id.homeimage9);
+        linearLayout = (LinearLayout) findViewById(R.id.homeToSearch);
 
+        linearLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Home_Activity.this, BookList_Activity.class));
+            }
+        });
         Glide.with(this).load(R.drawable.home1).into(imageView);
         Glide.with(this).load(R.drawable.home2).into(imageView1);
         Glide.with(this).load(R.drawable.home3).into(imageView2);
@@ -49,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
         Glide.with(this).load(R.drawable.homesupermaket).into(imageView6);
         Glide.with(this).load(R.drawable.ddcommend).into(imageView7);
         Glide.with(this).load(R.drawable.homebaby).into(imageView8);
+
         roll();
     }
 

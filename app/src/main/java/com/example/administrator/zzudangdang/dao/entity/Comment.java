@@ -1,17 +1,17 @@
-package com.example.administrator.zzudangdang.singlebook;
+package com.example.administrator.zzudangdang.dao.entity;
 
 /**
  * Created by 沐莲心 on 2017/12/19.
  */
 
-public class Comment_lj {
+public class Comment {
     private int Uavatar;
     private String Uname;
     private String score;
     private String Ucomment;
     private String time;
 
-    public Comment_lj(int Uavatar, String Uname, String score, String Ucomment, String time) {
+    public Comment(int Uavatar, String Uname, String score, String Ucomment, String time) {
         this.Uavatar = Uavatar;
         this.Uname = Uname;
         this.score = score;

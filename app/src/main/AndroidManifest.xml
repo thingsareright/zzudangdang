@@ -13,17 +13,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".activity.BookList_Activity"></activity>
+        <activity android:name=".activity.SingleBook_Activity"></activity>
+        <activity android:name=".activity.UserInformation_Activity"></activity>
+        <activity android:name=".activity.Home_Activity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
-        <activity android:name=".booklist.BookList_Activity"></activity>
-        <activity android:name=".singlebook.SingleBookActivity"></activity>
-        <activity android:name=".gaoMade.UserInformation"></activity>
-        <activity android:name=".liangMade.MainActivity"></activity>
     </application>
 
 </manifest>

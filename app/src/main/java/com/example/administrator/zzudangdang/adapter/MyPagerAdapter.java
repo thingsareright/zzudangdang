@@ -1,4 +1,4 @@
-package com.example.administrator.zzudangdang.linMade;
+package com.example.administrator.zzudangdang.adapter;
 
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -10,10 +10,10 @@ import java.util.List;
  * Created by 沐莲心 on 2017/12/18.
  */
 
-public class pagerAdapter_lj extends PagerAdapter {
+public class MyPagerAdapter extends android.support.v4.view.PagerAdapter {
     List<View> viewLists;
 
-    public pagerAdapter_lj(List<View> lists) {
+    public MyPagerAdapter(List<View> lists) {
         viewLists = lists;
     }
     @Override
