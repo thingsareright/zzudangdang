@@ -1,4 +1,4 @@
-package com.example.administrator.zzudangdang.singlebook;
+package com.example.administrator.zzudangdang.linMade;
 
 import android.graphics.Bitmap;
 import android.graphics.Matrix;
@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.administrator.zzudangdang.R;
 import com.example.administrator.zzudangdang.dao.entity.BookToClientforSingleBook;
+import com.example.administrator.zzudangdang.singlebook.bookPagerAdapter_lj;
 import com.example.administrator.zzudangdang.util.ConstantUtil;
 import com.example.administrator.zzudangdang.util.JSONUtil;
 
@@ -45,7 +46,7 @@ public class SingleBookActivity extends AppCompatActivity {
     private TextView boss_name_lj;
     private ViewPager viewPager;
     private List<View> lists = new ArrayList<View>();
-    private bookPagerAdapter_lj bookPagerAdapter_lj;
+    private com.example.administrator.zzudangdang.singlebook.bookPagerAdapter_lj bookPagerAdapter_lj;
     private Bitmap cursor_lj;
     private int offSet;
     public static TextView textView1;

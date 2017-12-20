@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="#ffffff"
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
@@ -40,6 +41,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:text="商品"
+                    android:textColor="@color/color_text_log"
                     android:background="#ffffff"
                     android:layout_weight="1"
                     android:textSize="12dp"/>
@@ -47,6 +49,7 @@
                     android:id="@+id/introduce"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
+                    android:textColor="@color/color_text_log"
                     android:text="详情"
                     android:background="#ffffff"
                     android:layout_weight="1"
@@ -54,6 +57,7 @@
                 <Button
                     android:id="@+id/comments"
                     android:layout_width="0dp"
+                    android:textColor="@color/color_text_log"
                     android:layout_height="match_parent"
                     android:text="评论"
                     android:background="#ffffff"
@@ -62,6 +66,7 @@
                 <Button
                     android:id="@+id/recommends"
                     android:layout_width="0dp"
+                    android:textColor="@color/color_text_log"
                     android:layout_height="match_parent"
                     android:text="推荐"
                     android:background="#ffffff"
@@ -87,14 +92,11 @@
         </LinearLayout>
     </LinearLayout>
 
-
-    <ScrollView
-        android:id="@+id/scrollview_lj"
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpager_lj"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1">
-        <include layout= "@layout/singlebookimage_main"/>
-    </ScrollView>
+        android:layout_weight="1"/>
 
 
     <LinearLayout
@@ -107,29 +109,29 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:drawableTop="@mipmap/dianpu"
+            android:drawablePadding="10dp"
             android:layout_weight="1"
             android:text="店铺"
-            android:drawablePadding="10dp"
             android:background="#ffffff"
             android:textSize="10sp" />
         <Button
             android:id="@+id/收藏_lj"
+            android:drawablePadding="10dp"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:drawableTop="@mipmap/shoucang"
             android:layout_weight="1"
             android:text="收藏"
-            android:drawablePadding="10dp"
             android:background="#ffffff"
             android:textSize="10sp"/>
         <Button
             android:id="@+id/购物车_lj"
+            android:drawablePadding="10dp"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:drawableTop="@mipmap/gouwuche"
             android:text="购物车"
-            android:drawablePadding="10dp"
             android:background="#ffffff"
             android:textSize="10sp"/>
         <Button
