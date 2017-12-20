@@ -18,10 +18,13 @@ public class RollHomeAdapter extends StaticPagerAdapter {
 
     private int[] imgs = {
 
-            R.drawable.home2,
-            R.drawable.home3,
-            R.drawable.home1,
-            R.drawable.home4,
+            R.drawable.home_pageview1,
+            R.drawable.home_pageview2,
+            R.drawable.home_pageview3,
+            R.drawable.home_pageview4,
+            R.drawable.home_pageview5,
+            R.drawable.home_pageview6,
+            R.drawable.home_pageview7
     };
 
 

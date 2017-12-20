@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
@@ -26,13 +27,28 @@ public class Home_Activity extends AppCompatActivity {
     ImageView imageView8;
     RollPagerView mRollViewPager;
 
+    Button home;
+    Button categary;
+    Button find;
+    Button shoppingcar;
+    Button mine;
     LinearLayout linearLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_main);
+        initView();
+        roll();
+    }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        startView();
+    }
+
+    void initView(){
         imageView = (ImageView) findViewById(R.id.homeimage1);
         imageView1 = (ImageView) findViewById(R.id.homeimage2);
         imageView2 = (ImageView) findViewById(R.id.homeimage3);
@@ -42,8 +58,27 @@ public class Home_Activity extends AppCompatActivity {
         imageView6 = (ImageView) findViewById(R.id.homeimage7);
         imageView7 = (ImageView) findViewById(R.id.homeimage8);
         imageView8 = (ImageView) findViewById(R.id.homeimage9);
+        home = (Button) findViewById(R.id.home_tohome);
+        categary = (Button) findViewById(R.id.home_toCategary);
+        find = (Button) findViewById(R.id.home_toFind);
+        shoppingcar = (Button) findViewById(R.id.home_toShoppingcar);
+        mine = (Button) findViewById(R.id.home_toMine);
         linearLayout = (LinearLayout) findViewById(R.id.homeToSearch);
+    }
 
+    void startView(){
+        shoppingcar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Home_Activity.this,ShoppingCar_Activity.class));
+            }
+        });
+        mine.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Home_Activity.this,UserInformation_Activity.class));
+            }
+        });
         linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -59,8 +94,6 @@ public class Home_Activity extends AppCompatActivity {
         Glide.with(this).load(R.drawable.homesupermaket).into(imageView6);
         Glide.with(this).load(R.drawable.ddcommend).into(imageView7);
         Glide.with(this).load(R.drawable.homebaby).into(imageView8);
-
-        roll();
     }
 
     void roll(){
