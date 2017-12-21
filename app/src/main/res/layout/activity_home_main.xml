@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="fill_parent"
+    android:background="#ffffff">
 
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
@@ -51,8 +52,9 @@
                         android:layout_height="wrap_content"
                         android:text="全部"/>
                     <EditText
+                        android:id="@+id/home_search"
+                        android:background="@null"
                         android:layout_weight="7"
-                        android:id="@+id/keyword"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="10dp"
@@ -116,30 +118,35 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
+                        android:textColor="@color/color_text_log"
                         android:text="图书"/>
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
+                        android:textColor="@color/color_text_log"
                         android:text="电子书"/>
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
+                        android:textColor="@color/color_text_log"
                         android:text="听书"/>
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
+                        android:textColor="@color/color_text_log"
                         android:text="网络文学"/>
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
+                        android:textColor="@color/color_text_log"
                         android:text="艺术品"
                         />
                 </LinearLayout>
@@ -153,30 +160,35 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
+                        android:textColor="@color/color_text_log"
                         android:text="童书"/>
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
+                        android:textColor="@color/color_text_log"
                         android:text="母婴"/>
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
+                        android:textColor="@color/color_text_log"
                         android:text="玩具"/>
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
+                        android:textColor="@color/color_text_log"
                         android:text="童装童鞋"/>
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
+                        android:textColor="@color/color_text_log"
                         android:text="创意文具"
                         />
                 </LinearLayout>
@@ -190,30 +202,35 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
+                        android:textColor="@color/color_text_log"
                         android:text="女装"/>
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
+                        android:textColor="@color/color_text_log"
                         android:text="男装"/>
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
+                        android:textColor="@color/color_text_log"
                         android:text="内衣配饰"/>
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
+                        android:textColor="@color/color_text_log"
                         android:text="鞋靴箱包"/>
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
+                        android:textColor="@color/color_text_log"
                         android:text="运动户外"
                         />
                 </LinearLayout>
@@ -227,30 +244,35 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
+                        android:textColor="@color/color_text_log"
                         android:text="美妆个护"/>
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
+                        android:textColor="@color/color_text_log"
                         android:text="食品"/>
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
+                        android:textColor="@color/color_text_log"
                         android:text="中华特产"/>
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
+                        android:textColor="@color/color_text_log"
                         android:text="家居优品"/>
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
+                        android:textColor="@color/color_text_log"
                         android:text="珠宝手表"
                         />
                 </LinearLayout>
@@ -264,30 +286,35 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
+                        android:textColor="@color/color_text_log"
                         android:text="家电"/>
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
+                        android:textColor="@color/color_text_log"
                         android:text="Apple"/>
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
+                        android:textColor="@color/color_text_log"
                         android:text="手机数码"/>
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
+                        android:textColor="@color/color_text_log"
                         android:text="童书榜"/>
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
+                        android:textColor="@color/color_text_log"
                         android:text="图书榜"
                         />
                 </LinearLayout>
@@ -301,17 +328,21 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
-                        android:text="促销快讯"/>
+                        android:background="#ffffff"
+                        android:text="促销快讯" />
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
                         android:text="热卖 当当书籍"/>
+
                     <Button
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="更多"/>
+                        android:background="#ffffff"
+                        android:textColor="#ff0000"
+                        android:text="更多" />
                 </LinearLayout>
             </LinearLayout>
             <LinearLayout
@@ -533,63 +564,67 @@
 
     <LinearLayout
         android:paddingTop="10dp"
-        android:background="#FF0000"
         android:layout_gravity="center"
         android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="0dp">
         <Button
             android:id="@+id/home_tohome"
-            android:background="#FF0000"
+            android:background="#ffffff"
             android:drawableTop="@mipmap/button_homepage"
             android:gravity="center"
             android:textSize="10dp"
             android:text="首页"
             android:layout_weight="1"
             android:layout_width="0dp"
-            android:layout_height="wrap_content" />
+            android:layout_marginTop="7dp"
+            android:layout_height="match_parent" />
         <Button
             android:id="@+id/home_toCategary"
-            android:background="#FF0000"
+            android:background="#ffffff"
             android:drawableTop="@mipmap/button_classify"
             android:gravity="center"
             android:textSize="10dp"
             android:text="分类"
             android:layout_weight="1"
             android:layout_width="0dp"
-            android:layout_height="wrap_content" />
+            android:layout_marginTop="7dp"
+            android:layout_height="match_parent"  />
         <Button
             android:id="@+id/home_toFind"
-            android:background="#FF0000"
+            android:background="#ffffff"
             android:drawableTop="@mipmap/button_find"
             android:gravity="center"
             android:textSize="10dp"
             android:text="发现"
             android:layout_weight="1"
             android:layout_width="0dp"
-            android:layout_height="wrap_content" />
+            android:layout_marginTop="7dp"
+            android:layout_height="match_parent"  />
         <Button
             android:id="@+id/home_toShoppingcar"
-            android:background="#FF0000"
+            android:background="#ffffff"
             android:drawableTop="@mipmap/button_cart"
             android:gravity="center"
             android:textSize="10dp"
             android:text="购物车"
             android:layout_weight="1"
             android:layout_width="0dp"
-            android:layout_height="wrap_content" />
+            android:layout_marginTop="7dp"
+            android:layout_height="match_parent"  />
 
         <Button
             android:id="@+id/home_toMine"
-            android:background="#FF0000"
+            android:background="#ffffff"
             android:drawableTop="@mipmap/button_my"
             android:gravity="center"
             android:textSize="10dp"
             android:text="我的"
             android:layout_weight="1"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-             />
+            android:layout_marginTop="7dp"
+            android:layout_height="match_parent"
+            />
 
     </LinearLayout>
 </LinearLayout>

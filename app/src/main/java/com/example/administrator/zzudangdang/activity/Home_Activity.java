@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
@@ -25,6 +26,7 @@ public class Home_Activity extends AppCompatActivity {
     ImageView imageView6;
     ImageView imageView7;
     ImageView imageView8;
+    EditText search;
     RollPagerView mRollViewPager;
 
     Button home;
@@ -64,6 +66,7 @@ public class Home_Activity extends AppCompatActivity {
         shoppingcar = (Button) findViewById(R.id.home_toShoppingcar);
         mine = (Button) findViewById(R.id.home_toMine);
         linearLayout = (LinearLayout) findViewById(R.id.homeToSearch);
+        search = (EditText) findViewById(R.id.home_search);
     }
 
     void startView(){
@@ -80,6 +83,12 @@ public class Home_Activity extends AppCompatActivity {
             }
         });
         linearLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Home_Activity.this, BookList_Activity.class));
+            }
+        });
+        search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(Home_Activity.this, BookList_Activity.class));

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- 这个是搜索结果列表界面每一个商品列表的内容-->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_margin="3dp"
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:background="#ffffff"

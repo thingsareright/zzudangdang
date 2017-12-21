@@ -40,6 +40,7 @@
                     android:layout_height="wrap_content"
                     android:text="全部"/>
                 <EditText
+                    android:background="@null"
                     android:layout_weight="7"
                     android:id="@+id/keyword"
                     android:layout_width="wrap_content"

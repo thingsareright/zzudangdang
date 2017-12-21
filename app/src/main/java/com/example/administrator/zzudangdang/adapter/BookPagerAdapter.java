@@ -46,7 +46,7 @@ public class BookPagerAdapter extends PagerAdapter {
     public BookPagerAdapter(List<View> lists, Activity activity) {
         viewLists = lists;
         this.activity = activity;
-        initcomment_ljs();initcomment_ljs();
+        initcomment_ljs();
     }
     @Override
     public int getCount() {
@@ -116,8 +116,10 @@ public class BookPagerAdapter extends PagerAdapter {
         SingleBook_Activity.textView4.setTextColor(MyApplication.getResource().getColor(R.color.color_text_log));
     }
     private void initcomment_ljs() {
-        Comment lian = new Comment(R.mipmap.ic_launcher_round, "1", "1", "1", "1");
+        Comment lian = new Comment(R.mipmap.ic_launcher_round, "孟磊", "0", "我为什么这么帅", "2017.12.13");
         comment_List.add(lian);
+        Comment lian1 = new Comment(R.mipmap.ic_launcher_round, "孟磊", "2", "我是组长我就是帅", "2017.12.13");
+        comment_List.add(lian1);
     }
 
     //初始化Adapter
