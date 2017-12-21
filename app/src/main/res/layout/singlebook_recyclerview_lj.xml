@@ -71,7 +71,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:text="赞"
-                android:drawableLeft="@mipmap/ic_launcher"
+                android:paddingRight="10dp"
+                android:drawableLeft="@mipmap/good"
                 android:gravity="center"
                 android:textSize="15sp"
                 android:textColor="#bfbfbf" />
@@ -79,7 +80,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:text="踩"
-                android:drawableLeft="@mipmap/ic_launcher"
+                android:paddingRight="10dp"
+                android:drawableLeft="@mipmap/foot"
                 android:gravity="center"
                 android:textSize="15sp"
                 android:textColor="#bfbfbf"/>
@@ -87,7 +89,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:text="回复"
-                android:drawableLeft="@mipmap/ic_launcher"
+                android:drawableLeft="@mipmap/respond"
                 android:gravity="center"
                 android:textSize="15sp"
                 android:textColor="#bfbfbf"/>
