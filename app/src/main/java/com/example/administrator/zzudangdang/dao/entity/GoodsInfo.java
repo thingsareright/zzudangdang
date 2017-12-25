@@ -6,37 +6,33 @@ package com.example.administrator.zzudangdang.dao.entity;
  */
 
 public class GoodsInfo {
-    private String id;
+    private int id;
     private String name;
     private boolean isChoosed;
     private String imageUrl;
-    private String desc;
     private double price;
     private double prime_price;
     private int postion;
     private int count;
     private String color;
-    private String size;
-    private int goodsImg;
+    private String goodsImg;
 
-    public GoodsInfo(String id, String name, String desc, double price, double prime_price,
-                     String color, String size, int goodsImg, int count) {
+    public GoodsInfo(int id, String name, double price, double prime_price,
+                     String color, String goodsImg, int count) {
         this.id = id;
         this.name = name;
-        this.desc = desc;
         this.price = price;
         this.prime_price = prime_price;
         this.count = count;
         this.color = color;
-        this.size = size;
         this.goodsImg = goodsImg;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -64,13 +60,6 @@ public class GoodsInfo {
         this.imageUrl = imageUrl;
     }
 
-    public String getDesc() {
-        return desc;
-    }
-
-    public void setDesc(String desc) {
-        this.desc = desc;
-    }
 
     public double getPrice() {
         return price;
@@ -112,19 +101,11 @@ public class GoodsInfo {
         this.color = color;
     }
 
-    public String getSize() {
-        return size;
-    }
-
-    public void setSize(String size) {
-        this.size = size;
-    }
-
-    public int getGoodsImg() {
+    public String getGoodsImg() {
         return goodsImg;
     }
 
-    public void setGoodsImg(int goodsImg) {
+    public void setGoodsImg(String goodsImg) {
         this.goodsImg = goodsImg;
     }
 }

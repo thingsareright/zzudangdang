@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,8 +19,12 @@ import android.widget.TextView;
 
 import com.example.administrator.zzudangdang.R;
 import com.example.administrator.zzudangdang.adapter.ShopcatAdapter;
+import com.example.administrator.zzudangdang.dao.entity.Book;
 import com.example.administrator.zzudangdang.dao.entity.GoodsInfo;
+import com.example.administrator.zzudangdang.dao.entity.ShopCart;
 import com.example.administrator.zzudangdang.dao.entity.StoreInfo;
+import com.example.administrator.zzudangdang.util.ConstantUtil;
+import com.example.administrator.zzudangdang.util.JSONUtil;
 import com.example.administrator.zzudangdang.util.UtilTool;
 import com.example.administrator.zzudangdang.util.UtilsLog;
 
@@ -36,6 +41,9 @@ import butterknife.OnClick;
 import in.srain.cube.views.ptr.PtrClassicDefaultHeader;
 import in.srain.cube.views.ptr.PtrDefaultHandler;
 import in.srain.cube.views.ptr.PtrFrameLayout;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 import static in.srain.cube.views.ptr.util.PtrLocalDisplay.dp2px;
 
@@ -73,17 +81,16 @@ public class ShopCartActicity extends AppCompatActivity implements View.OnClickL
     private boolean flag = false;
     private ShopcatAdapter adapter;
     private List<StoreInfo> groups; //组元素的列表
-    private Map<String, List<GoodsInfo>> childs; //子元素的列表
+    private Map<Integer, List<GoodsInfo>> childs; //子元素的列表
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.shopcart);
         ButterKnife.bind(this);
+        initData();
         initPtrFrame();
         initActionBar();
-        initData();
-        initEvents();
     }
 
     private void initPtrFrame() {
@@ -162,6 +169,8 @@ public class ShopCartActicity extends AppCompatActivity implements View.OnClickL
      */
     private void setCartNum() {
         int count = 0;
+        if (groups == null)
+            return;
         for (int i = 0; i < groups.size(); i++) {
             StoreInfo group = groups.get(i);
             group.setChoosed(allCheckBox.isChecked());
@@ -194,18 +203,58 @@ public class ShopCartActicity extends AppCompatActivity implements View.OnClickL
      */
     private void initData() {
         mcontext = this;
-        groups = new ArrayList<StoreInfo>();
-        childs = new HashMap<String, List<GoodsInfo>>();
-        for (int i = 0; i < 5; i++) {
-            groups.add(new StoreInfo(i + "", "小马的第" + (i + 1) + "号当铺"));
-            List<GoodsInfo> goods = new ArrayList<>();
-            for (int j = 0; j <= i; j++) {
-                int[] img = {R.drawable.cmaz, R.drawable.cmaz, R.drawable.cmaz, R.drawable.cmaz, R.drawable.cmaz, R.drawable.cmaz};
-                //i-j 就是商品的id， 对应着第几个店铺的第几个商品，1-1 就是第一个店铺的第一个商品
-                goods.add(new GoodsInfo(i + "-" + j, "商品", groups.get(i).getName() + "的第" + (j + 1) + "个商品", 255.00 + new Random().nextInt(1500), 1555 + new Random().nextInt(3000), "第一排", "出头天者", img[j], new Random().nextInt(100)));
+        String phone = new String("18838951998");
+        //向服务器发送请求以获得数据
+        requestForData(phone);
+    }
+
+    /**
+     * 向网络发送请求，以初始化数据
+     * @param phone 请求参数，电话号码
+     */
+    private void requestForData(final String phone) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    OkHttpClient client = new OkHttpClient();
+                    Request request = new Request.Builder()
+                            .url(ConstantUtil.getServer() + "/ShopCart/forShopCart?phone=" + phone)
+                            .build();
+                    System.out.println(ConstantUtil.getServer() + "/ShopCart/forShopCart?phone=" + phone);
+                    Response response = client.newCall(request).execute();
+                    String jsonData = response.body().string();
+
+                    //根据请求到的数据对活动数据进行更新
+                    changeViewForResult(jsonData);
+                } catch (Exception e){
+                    e.printStackTrace();
+                }
             }
-            childs.put(groups.get(i).getId(), goods);
-        }
+        }).start();
+    }
+
+    /**
+     * 根据请求到的数据对活动数据进行更新
+     * @param jsonData
+     */
+    private void changeViewForResult(final String jsonData) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                ShopCart shopCart = JSONUtil.parseShopCarWithGSON(jsonData);
+                if (shopCart != null) {
+                    groups = shopCart.getGroups(); //组元素的列表
+                    childs = shopCart.getChilds(); //子元素的列表
+                }
+                initEvents();
+
+                if (shopCart.getGroups() == null)
+                    shopCart.setGroups(new ArrayList<StoreInfo>());
+                setCartNum();
+
+            }
+        });
     }
 
     /**

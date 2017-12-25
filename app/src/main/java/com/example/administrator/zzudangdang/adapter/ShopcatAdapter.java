@@ -37,7 +37,7 @@ import butterknife.ButterKnife;
 public class ShopcatAdapter extends BaseExpandableListAdapter {
     private List<StoreInfo> groups;
     //这个String对应着StoreInfo的Id，也就是店铺的Id
-    private Map<String, List<GoodsInfo>> childrens;
+    private Map<Integer, List<GoodsInfo>> childrens;
     private Context mcontext;
     private CheckInterface checkInterface;
     private ModifyCountInterface modifyCountInterface;
@@ -46,7 +46,7 @@ public class ShopcatAdapter extends BaseExpandableListAdapter {
     private boolean flag=true; //组的编辑按钮是否可见，true可见，false不可见
 
 
-    public ShopcatAdapter(List<StoreInfo> groups, Map<String, List<GoodsInfo>> childrens, Context mcontext) {
+    public ShopcatAdapter(List<StoreInfo> groups, Map<Integer, List<GoodsInfo>> childrens, Context mcontext) {
         this.groups = groups;
         this.childrens = childrens;
         this.mcontext = mcontext;
@@ -59,7 +59,7 @@ public class ShopcatAdapter extends BaseExpandableListAdapter {
 
     @Override
     public int getChildrenCount(int groupPosition) {
-        String groupId = groups.get(groupPosition).getId();
+        int groupId = groups.get(groupPosition).getId();
         return childrens.get(groupId).size();
     }
 
@@ -179,11 +179,12 @@ public class ShopcatAdapter extends BaseExpandableListAdapter {
 
         final GoodsInfo child = (GoodsInfo) getChild(groupPosition, childPosition);
         if (child != null) {
-            childViewHolder.goodsName.setText(child.getDesc());
+            childViewHolder.goodsName.setText(child.getName());
             childViewHolder.goodsPrice.setText("￥" + child.getPrice() + "");
             childViewHolder.goodsNum.setText(String.valueOf(child.getCount()));
+            //TODO 要用Glide替换
             childViewHolder.goodsImage.setImageResource(R.drawable.cmaz);
-            childViewHolder.goods_size.setText("门票:" + child.getColor() + ",类型:" + child.getSize());
+            childViewHolder.goods_size.setText("");
             //设置打折前的原价
             SpannableString spannableString = new SpannableString("￥" + child.getPrime_price() + "");
             StrikethroughSpan span = new StrikethroughSpan();

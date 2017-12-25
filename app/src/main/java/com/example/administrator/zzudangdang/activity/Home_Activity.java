@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 import com.bumptech.glide.Glide;
 import com.example.administrator.zzudangdang.R;
 import com.example.administrator.zzudangdang.adapter.RollHomeAdapter;
+import com.example.administrator.zzudangdang.mengMadeShopCart.ShopCartActicity;
 import com.jude.rollviewpager.RollPagerView;
 import com.jude.rollviewpager.hintview.ColorPointHintView;
 
@@ -39,6 +40,11 @@ public class Home_Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //TODO 测试语句
+        Intent intent = new Intent(this,ShopCartActicity.class);
+        startActivity(intent);
+
+
         setContentView(R.layout.activity_home_main);
         initView();
         roll();
