@@ -180,13 +180,13 @@ public class ShopcatAdapter extends BaseExpandableListAdapter {
         final GoodsInfo child = (GoodsInfo) getChild(groupPosition, childPosition);
         if (child != null) {
             childViewHolder.goodsName.setText(child.getName());
-            childViewHolder.goodsPrice.setText("￥" + child.getPrice() + "");
+            childViewHolder.goodsPrice.setText("￥" + (int)(child.getPrice()*100)/100 + "");
             childViewHolder.goodsNum.setText(String.valueOf(child.getCount()));
             //TODO 要用Glide替换
             childViewHolder.goodsImage.setImageResource(R.drawable.cmaz);
             childViewHolder.goods_size.setText("");
             //设置打折前的原价
-            SpannableString spannableString = new SpannableString("￥" + child.getPrime_price() + "");
+            SpannableString spannableString = new SpannableString("￥" + (int)(child.getPrime_price()*100)/100 + "");
             StrikethroughSpan span = new StrikethroughSpan();
             spannableString.setSpan(span,0,spannableString.length()-1+1, Spanned.SPAN_INCLUSIVE_INCLUSIVE);
             //避免无限次的append

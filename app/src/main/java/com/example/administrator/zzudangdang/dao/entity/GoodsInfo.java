@@ -13,12 +13,13 @@ public class GoodsInfo {
     private double price;
     private double prime_price;
     private int postion;
-    private int count;
+    private int count;  //这里要特别注意，count才是用户要购买的数量
     private String color;
     private String goodsImg;
+    private int number;
 
     public GoodsInfo(int id, String name, double price, double prime_price,
-                     String color, String goodsImg, int count) {
+                     String color, String goodsImg, int count,int number) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -26,6 +27,7 @@ public class GoodsInfo {
         this.count = count;
         this.color = color;
         this.goodsImg = goodsImg;
+        this.number = number;
     }
 
     public int getId() {
@@ -107,5 +109,13 @@ public class GoodsInfo {
 
     public void setGoodsImg(String goodsImg) {
         this.goodsImg = goodsImg;
+    }
+
+    public int getNumber() {
+        return number;
+    }
+
+    public void setNumber(int number) {
+        this.number = number;
     }
 }

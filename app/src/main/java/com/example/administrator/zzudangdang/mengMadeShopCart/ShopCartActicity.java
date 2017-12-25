@@ -571,7 +571,7 @@ public class ShopCartActicity extends AppCompatActivity implements View.OnClickL
                 }
             }
         }
-        totalPrice.setText("￥" + mtotalPrice + "");
+        totalPrice.setText("￥" + (int)(mtotalPrice * 100)/100 + "");
         goPay.setText("去支付(" + mtotalCount + ")");
         if (mtotalCount == 0) {
             setCartNum();
