@@ -258,6 +258,9 @@
     <color name="skyblue">#87ceeb</color>
     <!-- 天蓝色 -->
     <color name="gray">#808080</color>
+    <color name="line">#e8e8e8</color>
+
+    <color name="colorLightGray">#d6dbe1</color><!-- TODO -->
     <!-- 灰色 -->
     <!-- 灰色 -->
     <color name="olive">#808000</color>

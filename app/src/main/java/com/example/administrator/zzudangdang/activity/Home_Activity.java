@@ -14,6 +14,7 @@ import com.bumptech.glide.Glide;
 import com.example.administrator.zzudangdang.R;
 import com.example.administrator.zzudangdang.adapter.RollHomeAdapter;
 import com.example.administrator.zzudangdang.mengMadeShopCart.ShopCartActicity;
+import com.example.administrator.zzudangdang.myinfo.MyInfoActivity;
 import com.jude.rollviewpager.RollPagerView;
 import com.jude.rollviewpager.hintview.ColorPointHintView;
 
@@ -41,7 +42,7 @@ public class Home_Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //TODO 测试语句
-        Intent intent = new Intent(this,ShopCartActicity.class);
+        Intent intent = new Intent(this,MyInfoActivity.class);
         startActivity(intent);
 
 
