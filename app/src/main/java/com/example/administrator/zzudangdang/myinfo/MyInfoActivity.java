@@ -32,9 +32,11 @@ import android.widget.Toast;
 
 
 import com.example.administrator.zzudangdang.R;
+import com.example.administrator.zzudangdang.util.TakePictureManager;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 //实现
     // 从下一个活动传给上一个活动的信息，如昵称，性别，个人介绍，qq，微信，主页显示联系方式
@@ -78,6 +80,8 @@ public class MyInfoActivity extends AppCompatActivity implements View.OnClickLis
     private static final int CHANGE_NICK_NAME = 3;
     private static final int TAKE_PHOTO = 1;  //拍照
     private static final int CHOOSE_PHOTO = 2;  //选择照片
+    private TakePictureManager takePictureManager;  //第三方类
+
     private ImageView head;
     private Uri imageUri;
     @Override
@@ -131,7 +135,7 @@ public class MyInfoActivity extends AppCompatActivity implements View.OnClickLis
             }
         });
 
-        //邮箱   出现闪退情况
+        //邮箱
         textView_Email=(TextView)findViewById(R.id.email);
         View viewemail=(View)findViewById(R.id.view_email);
         viewemail.setOnClickListener(new View.OnClickListener(){
@@ -176,43 +180,51 @@ public class MyInfoActivity extends AppCompatActivity implements View.OnClickLis
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.takePhoto:
-               // Toast.makeText(this,"点击了拍照",Toast.LENGTH_SHORT).show();
-                File outputImage = new File(getExternalCacheDir(), "output_image.jpg");
-                try {
-                    if (outputImage.exists()) {
-                        outputImage.delete();
+                takePictureManager = new TakePictureManager(this);
+                //开启裁剪 比例 1:3 宽高 350 350  (默认不裁剪)
+                takePictureManager.setTailor(1, 3, 350, 350);
+                //拍照方式
+                takePictureManager.startTakeWayByCarema();
+                //回调
+                takePictureManager.setTakePictureCallBackListener(new TakePictureManager.takePictureCallBackListener() {
+                    //成功拿到图片,isTailor 是否裁剪？ ,outFile 拿到的文件 ,filePath拿到的URl
+                    @Override
+                    public void successful(boolean isTailor, File outFile, Uri filePath) {
+                        Toast.makeText(MyInfoActivity.this, "成功拍照", Toast.LENGTH_SHORT).show();
                     }
-                    outputImage.createNewFile();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                if (Build.VERSION.SDK_INT > 24) {
-                    imageUri = FileProvider.getUriForFile(MyInfoActivity.this,
-                            "com.example.administrator.cameraalbumtest.fileprovider", outputImage);
-                } else {
-                    imageUri = Uri.fromFile(outputImage);
-                }
-                Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
-                intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);//指定图片的输出地址
-                startActivityForResult(intent, TAKE_PHOTO);
+
+                    //失败回调
+                    @Override
+                    public void failed(int errorCode, List<String> deniedPermissions) {
+                        Toast.makeText(MyInfoActivity.this, "拍照失败", Toast.LENGTH_SHORT).show();
+                    }
+                });
                 break;
-
-
             case R.id.choosePhoto:
-                //Toast.makeText(this,"点击了选择照片",Toast.LENGTH_SHORT).show();
-                if (ContextCompat.checkSelfPermission(MyInfoActivity.this,
-                        Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-                    ActivityCompat.requestPermissions(MyInfoActivity.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
-                } else {
-                    openAlbum();
-                }
+                takePictureManager = new TakePictureManager(this);
+                takePictureManager.setTailor(1, 1, 350, 350);
+                takePictureManager.startTakeWayByAlbum();
+                takePictureManager.setTakePictureCallBackListener(new TakePictureManager.takePictureCallBackListener() {
+                    @Override
+                    public void successful(boolean isTailor, File outFile, Uri filePath) {
+                        Toast.makeText(MyInfoActivity.this, "选择照片成功", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void failed(int errorCode, List<String> deniedPermissions) {
+                        Toast.makeText(MyInfoActivity.this, "选择照片失败", Toast.LENGTH_SHORT).show();
+                    }
+
+                });
                 break;
 
 
             case R.id.btn_cancel:
                 dialog.dismiss();
+                break;
+
         }
     }
 
@@ -225,42 +237,14 @@ public class MyInfoActivity extends AppCompatActivity implements View.OnClickLis
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        switch (requestCode) {
-            case 1:
-                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    openAlbum();
-                } else {
-                    Toast.makeText(this, "You denied the permission", Toast.LENGTH_SHORT).show();
-                }
-                break;
-            default:
-        }
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        takePictureManager.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        takePictureManager.attachToActivityForResult(requestCode, resultCode, data);
         switch (requestCode) {  //启动活动
-            case TAKE_PHOTO:
-                if (resultCode == RESULT_OK) {
-                    try {//拍照成功，解析成bitmap对象，并在imageview中显示出来
-                        Bitmap bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(imageUri));
-                        head.setImageBitmap(bitmap);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-                break;
-
-
-            case CHOOSE_PHOTO:
-                if (resultCode == RESULT_OK) {
-                    if (Build.VERSION.SDK_INT >= 19) {
-                        handleImageOnKitKat(data);
-                    } else {
-                        handleImageBeforeKitKat(data);
-                    }
-                }
-                break;
             case CHANGE_NICK_NAME:
                 if(resultCode == RESULT_OK) {
                     String name = data.getStringExtra("nickname");
