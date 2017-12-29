@@ -32,15 +32,28 @@ import android.widget.Toast;
 
 
 import com.example.administrator.zzudangdang.R;
+import com.example.administrator.zzudangdang.dao.entity.Image;
 import com.example.administrator.zzudangdang.util.ConstantUtil;
 import com.example.administrator.zzudangdang.util.TakePictureManager;
 import com.example.administrator.zzudangdang.util.UploadImgFileUtil;
+import com.google.gson.Gson;
+
+import org.apache.commons.codec.binary.Base64;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 //实现
     // 从下一个活动传给上一个活动的信息，如昵称，性别，个人介绍，qq，微信，主页显示联系方式
@@ -196,6 +209,23 @@ public class MyInfoActivity extends AppCompatActivity implements View.OnClickLis
                     //成功拿到图片,isTailor 是否裁剪？ ,outFile 拿到的文件 ,filePath拿到的URl
                     @Override
                     public void successful(boolean isTailor, File outFile, Uri filePath) {
+                        try {
+                            InputStream inputStream = new FileInputStream(outFile);
+                            byte[] data = null;
+                            data = new byte[inputStream.available()];
+                            inputStream.read(data);
+                            inputStream.close();
+                            //加密
+                            String base64 = new String(Base64.encodeBase64(data));
+                            //TODO 这里的userid暂且为1
+                            Image image = new Image("18838951998", base64);
+                            String imageJson = new Gson().toJson(image);
+                            sendRequestPostImage(imageJson);    //向服务器发送更改头像请求
+                        } catch (FileNotFoundException e) {
+                            e.printStackTrace();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
                         Toast.makeText(MyInfoActivity.this, "成功拍照", Toast.LENGTH_SHORT).show();
                     }
 
@@ -213,23 +243,22 @@ public class MyInfoActivity extends AppCompatActivity implements View.OnClickLis
                 takePictureManager.setTakePictureCallBackListener(new TakePictureManager.takePictureCallBackListener() {
                     @Override
                     public void successful(boolean isTailor, File outFile, Uri filePath) {
-                        final Map<String, String> params = new HashMap<String, String>();
-                        final Map<String, File> files = new HashMap<String, File>();
-                        files.put("file", outFile);
-                        Log.e("file", outFile.getName());
-                        new Thread(new Runnable() {
-                            @Override
-                            public void run() {
-                                try {
-                                    //todo
-                                    Log.e("wrong",ConstantUtil.getServer() + "/image/");
-                                    final String request = UploadImgFileUtil.post(ConstantUtil.getServer() + "/image/", params, files);
-
-                                } catch (IOException e) {
-                                    e.printStackTrace();
-                                }
-                            }
-                        }).start();
+                        byte[] data = new byte[0];
+                        try {
+                            InputStream inputStream = new FileInputStream(outFile);
+                            data = null;
+                            data = new byte[inputStream.available()];
+                            inputStream.read(data);
+                            inputStream.close();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        //加密
+                        String base64 = new String(Base64.encodeBase64(data));
+                        //TODO 这里的userid暂且为1
+                        Image image = new Image("18838951998", base64);
+                        String imageJson = new Gson().toJson(image);
+                        sendRequestPostImage(imageJson);    //向服务器发送更改头像请求
                         Toast.makeText(MyInfoActivity.this, "选择照片成功", Toast.LENGTH_SHORT).show();
                     }
 
@@ -247,6 +276,28 @@ public class MyInfoActivity extends AppCompatActivity implements View.OnClickLis
                 break;
 
         }
+    }
+
+    private void sendRequestPostImage(final String imageJson) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                OkHttpClient okHttpClient = new OkHttpClient();
+                RequestBody requestBody = RequestBody.create(MediaType.parse("application/json; charset=utf-8"),imageJson);
+                Request request = new Request.Builder()
+                        .url(ConstantUtil.getServer() + "/image/")
+                        .post(requestBody)
+                        .build();
+                try {
+                    Response response = okHttpClient.newCall(request).execute();
+                    if (response.isSuccessful()) {
+                        Log.i("upload", response.body().string());
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } ;
+            }
+        }).start();
     }
 
 

@@ -111,11 +111,11 @@ public class UploadImgFileUtil {
      *
      * @param url Service net address
      * @param params text content
-     * @param files pictures
+     * @param file picture
      * @return String result of Service response
      * @throws IOException
      */
-    public static String post(String url, Map<String, String> params, Map<String, File> files)
+    public static String post(String url, Map<String, String> params, File file)
             throws IOException {
         String BOUNDARY = java.util.UUID.randomUUID().toString();
         String PREFIX = "--", LINEND = "\r\n";
@@ -144,29 +144,16 @@ public class UploadImgFileUtil {
             sb.append(entry.getValue());
             sb.append(LINEND);
         }
+        sb.append(PREFIX);
+        sb.append(BOUNDARY);
+        sb.append(LINEND);
+        sb.append("Content-Disposition: form-data; name=\"file\"; filename=\""
+                + file.getName() + "\"" + LINEND);
+        sb.append("Content-Type: application/octet-stream; charset=" + CHARSET + LINEND);
+        sb.append(LINEND);
         DataOutputStream outStream = new DataOutputStream(conn.getOutputStream());
         outStream.write(sb.toString().getBytes());
-        // 发送文件数据
-        if (files != null)
-            for (Map.Entry<String, File> file : files.entrySet()) {
-                StringBuilder sb1 = new StringBuilder();
-                sb1.append(PREFIX);
-                sb1.append(BOUNDARY);
-                sb1.append(LINEND);
-                sb1.append("Content-Disposition: form-data; name=\"file\"; filename=\""
-                        + file.getValue().getName() + "\"" + LINEND);
-                sb1.append("Content-Type: application/octet-stream; charset=" + CHARSET + LINEND);
-                sb1.append(LINEND);
-                outStream.write(sb1.toString().getBytes());
-                InputStream is = new FileInputStream(file.getValue());
-                byte[] buffer = new byte[1024];
-                int len = 0;
-                while ((len = is.read(buffer)) != -1) {
-                    outStream.write(buffer, 0, len);
-                }
-                is.close();
-                outStream.write(LINEND.getBytes());
-            }
+
         // 请求结束标志
         byte[] end_data = (PREFIX + BOUNDARY + PREFIX + LINEND).getBytes();
         outStream.write(end_data);
