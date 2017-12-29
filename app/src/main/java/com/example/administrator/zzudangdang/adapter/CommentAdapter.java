@@ -1,4 +1,4 @@
-package com.example.administrator.zzudangdang.adapter;
+package com.example.administrator.zzudangdang.singlebook;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -8,7 +8,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.administrator.zzudangdang.R;
-import com.example.administrator.zzudangdang.dao.entity.Comment;
 
 import java.util.List;
 
@@ -16,9 +15,9 @@ import java.util.List;
  * Created by 沐莲心 on 2017/12/19.
  */
 
-public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ViewHolder> {
+public class comment_ljAdapter extends RecyclerView.Adapter<comment_ljAdapter.ViewHolder> {
 
-    private List<Comment> mcomment_List;
+    private List<Comment_lj> mcomment_ljList;
 
     static class ViewHolder extends RecyclerView.ViewHolder {
         ImageView comment_ljUavatar;
@@ -26,6 +25,9 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ViewHold
         TextView comment_ljScore;
         TextView comment_ljUcomment;
         TextView comment_ljTime;
+        ImageView comment_ljBimage;
+        TextView comment_ljBname;
+        TextView comment_ljBprice;
 
         public ViewHolder(View view) {
             super(view);
@@ -34,32 +36,38 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ViewHold
             comment_ljScore = (TextView) view.findViewById(R.id.score);
             comment_ljUcomment = (TextView) view.findViewById(R.id.Ucomment);
             comment_ljTime = (TextView) view.findViewById(R.id.time);
+            comment_ljBimage = (ImageView) view.findViewById(R.id.Bimage);
+            comment_ljBname = (TextView) view.findViewById(R.id.Bname);
+            comment_ljBprice = (TextView) view.findViewById(R.id.Bprice);
         }
     }
 
-    public CommentAdapter(List<Comment> comment_List) {
-        mcomment_List = comment_List;
+    public comment_ljAdapter(List<Comment_lj> comment_ljList) {
+        mcomment_ljList = comment_ljList;
     }
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.singlebook_recyclerview_lj, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recyclerview_lj, parent, false);
         ViewHolder holder = new ViewHolder(view);
         return holder;
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        Comment comment_ = mcomment_List.get(position);
-        holder.comment_ljUavatar.setImageResource(comment_.getUavatar());
-        holder.comment_ljUname.setText(comment_.getUname());
-        holder.comment_ljScore.setText(comment_.getScore());
-        holder.comment_ljUcomment.setText(comment_.getUcomment());
-        holder.comment_ljTime.setText(comment_.getTime());
+        Comment_lj comment_lj = mcomment_ljList.get(position);
+        holder.comment_ljUavatar.setImageResource(comment_lj.getUavatar());
+        holder.comment_ljUname.setText(comment_lj.getUname());
+        holder.comment_ljScore.setText(comment_lj.getScore());
+        holder.comment_ljUcomment.setText(comment_lj.getUcomment());
+        holder.comment_ljTime.setText(comment_lj.getTime());
+        holder.comment_ljBimage.setImageResource(comment_lj.getUavatar());
+        holder.comment_ljBname.setText(comment_lj.getTime());
+        holder.comment_ljBprice.setText(comment_lj.getTime());
 
     }
 
     @Override
     public int getItemCount() {
-        return mcomment_List.size();
+        return mcomment_ljList.size();
     }
 }

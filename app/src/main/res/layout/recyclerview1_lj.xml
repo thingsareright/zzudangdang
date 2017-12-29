@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="90sp">
+        <ImageView
+            android:id="@+id/Bimage"
+            android:layout_width="60sp"
+            android:layout_height="60sp"
+            android:src="@drawable/book"
+            android:layout_marginLeft="10dp"
+            android:layout_centerVertical="true"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/Bimage"
+            android:layout_alignTop="@+id/Bimage">
+            <TextView
+                android:id="@+id/Bname"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="14sp"
+                android:includeFontPadding="false"
+                android:maxLines="2"
+                android:maxHeight="30sp"
+                android:textStyle="bold"
+                android:textColor="#000003"
+                android:paddingLeft="10dp"
+                android:text="大数据【套装7册】为数据而生+大数据时代+数据之巅+决战大数据（升级版）:大数据的关键思考+爆发:大数据时代预见未来的新思维（经典版）+大数据营销 大数据时代三部曲 大数据思维与决策大数据之路"
+                android:ellipsize="end" />
+            <RelativeLayout
+                android:layout_width="50sp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp">
+                <TextView
+                    android:id="@+id/Bprice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="15sp"
+                    android:includeFontPadding="false"
+                    android:text="￥358.00"
+                    android:textSize="14sp"
+                    android:textColor="#000003"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="15sp"
+                    android:includeFontPadding="false"
+                    android:text="x1"
+                    android:textSize="14sp"
+                    android:textColor="#000003"
+                    android:layout_below="@+id/Bprice"
+                    android:layout_alignParentRight="true"/>
+            </RelativeLayout>
+
+        </LinearLayout>
+    </RelativeLayout>
+
+</LinearLayout>
