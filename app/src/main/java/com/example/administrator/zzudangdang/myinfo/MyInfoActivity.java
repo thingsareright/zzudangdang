@@ -32,11 +32,15 @@ import android.widget.Toast;
 
 
 import com.example.administrator.zzudangdang.R;
+import com.example.administrator.zzudangdang.util.ConstantUtil;
 import com.example.administrator.zzudangdang.util.TakePictureManager;
+import com.example.administrator.zzudangdang.util.UploadImgFileUtil;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 //实现
     // 从下一个活动传给上一个活动的信息，如昵称，性别，个人介绍，qq，微信，主页显示联系方式
@@ -209,6 +213,23 @@ public class MyInfoActivity extends AppCompatActivity implements View.OnClickLis
                 takePictureManager.setTakePictureCallBackListener(new TakePictureManager.takePictureCallBackListener() {
                     @Override
                     public void successful(boolean isTailor, File outFile, Uri filePath) {
+                        final Map<String, String> params = new HashMap<String, String>();
+                        final Map<String, File> files = new HashMap<String, File>();
+                        files.put("file", outFile);
+                        Log.e("file", outFile.getName());
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                try {
+                                    //todo
+                                    Log.e("wrong",ConstantUtil.getServer() + "/image/");
+                                    final String request = UploadImgFileUtil.post(ConstantUtil.getServer() + "/image/", params, files);
+
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        }).start();
                         Toast.makeText(MyInfoActivity.this, "选择照片成功", Toast.LENGTH_SHORT).show();
                     }
 
