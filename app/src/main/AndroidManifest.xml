@@ -28,7 +28,8 @@
         <activity android:name=".mengMadeShopCart.ShopCartActicity"></activity>
 
         <activity android:name=".myinfo.NameActivity" />
-        <activity android:name=".myinfo.MyInfoActivity"></activity>
+        <activity android:name=".myinfo.MyInfoActivity"   android:launchMode="singleTask">
+        </activity>
         <activity android:name=".myinfo.SexActivity" />
         <activity android:name=".myinfo.WechatActivity" />
         <activity android:name=".myinfo.QQActivity" />

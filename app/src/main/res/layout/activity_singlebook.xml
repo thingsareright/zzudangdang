@@ -1,188 +1,155 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/relativeLayout_lj"
     android:layout_width="match_parent"
     android:background="#ffffff"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
     <LinearLayout
+        android:id="@+id/title_lj"
         android:layout_width="match_parent"
-        android:background="#ffffff"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <LinearLayout
-            android:id="@+id/title_lj"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="44dp"
+            android:orientation="horizontal">
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="44dp"
-                android:orientation="horizontal">
-
-                <LinearLayout
-                    android:id="@+id/ll_back"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="2">
-
-                    <ImageView
-                        android:id="@+id/iv_back"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:src="@mipmap/back"
-                        android:layout_marginLeft="10dp"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="5"
-                    android:gravity="center">
-                    <Button
-                        android:id="@+id/thing"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:text="商品"
-                        android:background="#ffffff"
-                        android:layout_weight="1"
-                        android:textSize="12dp"/>
-                    <Button
-                        android:id="@+id/introduce"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:text="详情"
-                        android:background="#ffffff"
-                        android:layout_weight="1"
-                        android:textSize="12dp"/>
-                    <Button
-                        android:id="@+id/comments"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:text="评论"
-                        android:background="#ffffff"
-                        android:layout_weight="1"
-                        android:textSize="12dp"/>
-                    <Button
-                        android:id="@+id/recommends"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:text="推荐"
-                        android:background="#ffffff"
-                        android:layout_weight="1"
-                        android:textSize="12dp"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="2"
-                    android:paddingLeft="15dp">
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:src="@mipmap/fenxiang"/>
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:paddingLeft="20dp"
-                        android:src="@mipmap/menu"/>
-                </LinearLayout>
-
-            </LinearLayout>
-        </LinearLayout>
-
-        <android.support.v4.view.ViewPager
-            android:id="@+id/viewpager_lj"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"/>
-
-
-        <LinearLayout
-            android:id="@+id/dibu_lj"
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="55dp">
-            <Button
-                android:id="@+id/shop_lj"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:drawableTop="@mipmap/dianpu"
-                android:drawablePadding="10dp"
-                android:layout_weight="1"
-                android:text="店铺"
-                android:background="#ffffff"
-                android:textSize="10sp" />
-            <Button
-                android:id="@+id/collect_lj"
-                android:drawablePadding="10dp"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:drawableTop="@mipmap/shoucang"
-                android:layout_weight="1"
-                android:text="收藏"
-                android:background="#ffffff"
-                android:textSize="10sp"/>
-            <FrameLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-                    <Button
-                        android:id="@+id/cart_lj"
-                        android:drawablePadding="10dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:drawableTop="@mipmap/gouwuche"
-                        android:text="购物车"
-                        android:background="#ffffff"
-                        android:textSize="10sp"/>
-                </LinearLayout>
-                <TextView
-                    android:id="@+id/count_lj"
-                    android:text="0"
-                    android:textSize="10sp"
-                    android:layout_gravity="right"
-                    android:gravity="center"
-                    android:textColor="#ffffff"
-                    android:background="@drawable/setbar2_bg"
-                    android:layout_width="15sp"
-                    android:layout_height="15sp" />
-            </FrameLayout>
-            <Button
-                android:id="@+id/buynow_lj"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:background="#ff8c00"
-                android:layout_weight="2"
-                android:textColor="#ffffff"
-                android:text="立即购买"/>
-            <LinearLayout
-                android:orientation="horizontal"
+                android:id="@+id/ll_back"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="2">
-                <Button
-                    android:id="@+id/addcart_lj"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="#ff4500"
-                    android:textColor="#ffffff"
-                    android:text="加入购物车"/>
 
                 <ImageView
-                    android:id="@+id/iv"
-                    android:src="@mipmap/shop"
+                    android:id="@+id/iv_back"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="match_parent"
+                    android:src="@mipmap/back"
+                    android:layout_marginLeft="10dp"/>
             </LinearLayout>
-        </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="5"
+                android:gravity="center">
+                <Button
+                    android:id="@+id/thing"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:text="商品"
+                    android:textColor="@color/color_text_log"
+                    android:background="#ffffff"
+                    android:layout_weight="1"
+                    android:textSize="12dp"/>
+                <Button
+                    android:id="@+id/introduce"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:textColor="@color/color_text_log"
+                    android:text="详情"
+                    android:background="#ffffff"
+                    android:layout_weight="1"
+                    android:textSize="12dp"/>
+                <Button
+                    android:id="@+id/comments"
+                    android:layout_width="0dp"
+                    android:textColor="@color/color_text_log"
+                    android:layout_height="match_parent"
+                    android:text="评论"
+                    android:background="#ffffff"
+                    android:layout_weight="1"
+                    android:textSize="12dp"/>
+                <Button
+                    android:id="@+id/recommends"
+                    android:layout_width="0dp"
+                    android:textColor="@color/color_text_log"
+                    android:layout_height="match_parent"
+                    android:text="推荐"
+                    android:background="#ffffff"
+                    android:layout_weight="1"
+                    android:textSize="12dp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:paddingLeft="15dp">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:src="@mipmap/fenxiang"/>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:paddingLeft="20dp"
+                    android:src="@mipmap/menu"/>
+            </LinearLayout>
 
+        </LinearLayout>
     </LinearLayout>
 
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpager_lj"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
 
-</RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/dibu_lj"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="55dp">
+        <Button
+            android:id="@+id/店铺_lj"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:drawableTop="@mipmap/dianpu"
+            android:drawablePadding="10dp"
+            android:layout_weight="1"
+            android:text="店铺"
+            android:background="#ffffff"
+            android:textSize="10sp" />
+        <Button
+            android:id="@+id/收藏_lj"
+            android:drawablePadding="10dp"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:drawableTop="@mipmap/shoucang"
+            android:layout_weight="1"
+            android:text="收藏"
+            android:background="#ffffff"
+            android:textSize="10sp"/>
+        <Button
+            android:id="@+id/购物车_lj"
+            android:drawablePadding="10dp"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:drawableTop="@mipmap/gouwuche"
+            android:text="购物车"
+            android:background="#ffffff"
+            android:textSize="10sp"/>
+        <Button
+            android:id="@+id/立即购买_lj"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:background="#ff8c00"
+            android:layout_weight="2"
+            android:textColor="#ffffff"
+            android:text="立即购买"/>
+        <Button
+            android:id="@+id/加入购物车_lj"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:background="#ff4500"
+            android:layout_weight="2"
+            android:textColor="#ffffff"
+            android:text="加入购物车"/>
+
+    </LinearLayout>
+</LinearLayout>
