@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.administrator.zzudangdang.R;
 import com.example.administrator.zzudangdang.adapter.BookAdapterForResult;
@@ -18,6 +19,7 @@ import com.example.administrator.zzudangdang.dao.entity.Book;
 import com.example.administrator.zzudangdang.dao.entity.User;
 import com.example.administrator.zzudangdang.util.ConstantUtil;
 import com.example.administrator.zzudangdang.util.JSONUtil;
+import com.example.administrator.zzudangdang.util.MyApplication;
 import com.example.administrator.zzudangdang.util.UserUtil;
 
 import java.util.List;
@@ -60,6 +62,7 @@ public class Login_Activity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(Login_Activity.this,Password1_Activity.class));
+
             }
         });
         register.setOnClickListener(new View.OnClickListener() {
@@ -73,7 +76,7 @@ public class Login_Activity extends AppCompatActivity {
 
 
     /**
-     * 这个方法用于向网络发送请求以刷新页面
+     * 这个方法用于向网络发送请求以验证登录
      */
     private void sendRequestForLogin(final String uname,final  String uword) {
         new Thread(new Runnable() {
@@ -100,8 +103,13 @@ public class Login_Activity extends AppCompatActivity {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                UserUtil.setOnlyUser(user);
-                finish();
+                if(user!=null){
+                    UserUtil.setOnlyUser(user);
+                    finish();
+                }else{
+                    Toast.makeText(MyApplication.getContext(),"用户或密码错误",Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
     }

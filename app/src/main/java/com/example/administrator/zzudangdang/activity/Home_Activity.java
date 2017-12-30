@@ -42,9 +42,9 @@ public class Home_Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //TODO 测试语句
-        Intent intent = new Intent(this,MyInfoActivity.class);
-        startActivity(intent);
+//        //TODO 测试语句
+//        Intent intent = new Intent(this,MyInfoActivity.class);
+//        startActivity(intent);
 
 
         setContentView(R.layout.activity_home_main);
