@@ -7,10 +7,21 @@ import android.view.View;
 import android.widget.RadioButton;
 
 import com.example.administrator.zzudangdang.R;
+import com.example.administrator.zzudangdang.util.ConstantUtil;
+
+import java.io.IOException;
+
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 //未涉及到保存这个按钮，直接对radiobutton进行了监听，但是那个sexbutton.xml保存按钮未删除
 
 public class SexActivity extends AppCompatActivity {
+
+    //TODO 用户手机号和密码以后都要初始化
+    private static String phone = "18838951998";
+    private static String password = "123456";
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -23,18 +34,24 @@ public class SexActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent intent =new Intent();
-                intent.putExtra("sex","男");
-                setResult(RESULT_OK,intent);
+                //先销毁以前的活动
+                MyInfoActivity.instance.finish();
+                Intent intent =new Intent(getApplicationContext(),MyInfoActivity.class);
+                startActivity(intent);
+                //发送数据给网络
+                sendRequestForChange(1);
                 finish();
             }
         });
         radioButton2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent =new Intent();
-                intent.putExtra("sex","女");
-                setResult(RESULT_OK,intent);
+                //先销毁以前的活动
+                MyInfoActivity.instance.finish();
+                Intent intent =new Intent(getApplicationContext(),MyInfoActivity.class);
+                startActivity(intent);
+                //发送数据给网络
+                sendRequestForChange(0);
                 finish();
             }
         });
@@ -44,5 +61,23 @@ public class SexActivity extends AppCompatActivity {
                 finish();
             }
         });
+    }
+
+    private void sendRequestForChange(final int text) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    OkHttpClient client = new OkHttpClient();
+                    Request request = new Request.Builder()
+                            .url(ConstantUtil.getServer() + "/User/updateUserSex?phone=" +
+                                    phone + "&password=" + password + "&sex=" + text)
+                            .build();
+                    final Response response = client.newCall(request).execute();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
     }
 }
