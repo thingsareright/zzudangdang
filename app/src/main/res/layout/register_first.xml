@@ -36,6 +36,7 @@
                 android:textColor="#000" />
 
             <EditText
+                android:id="@+id/register1_phone"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="30dp"
@@ -60,6 +61,7 @@
                 />
 
             <EditText
+                android:id="@+id/register1_mycheck"
                 android:layout_gravity="bottom"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -74,7 +76,7 @@
 
     </LinearLayout>
     <Button
-        android:id="@+id/login_button"
+        android:id="@+id/register1_next"
         android:layout_width="240dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
