@@ -51,7 +51,7 @@
             android:layout_weight="1">
 
             <com.againstsky.verificationcode.VerificationCodeView
-                android:id="@+id/code_view"
+                android:id="@+id/register_code_view"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 app:codeMode="2"

@@ -2,7 +2,7 @@ package com.example.administrator.zzudangdang.dao.entity;
 /**
  * 这个类用来向用户返回除了用户密码之外的其他信息
  */
-public class UserInfo {
+public class  UserInfo {
     private String phone;       //用户手机号，这是用户的唯一标识
     private String head;        //用户的头像地址
     private String nickname;    //用户昵称
