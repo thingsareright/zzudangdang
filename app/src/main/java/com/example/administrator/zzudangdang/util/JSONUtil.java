@@ -4,6 +4,7 @@ import com.example.administrator.zzudangdang.dao.entity.Book;
 import com.example.administrator.zzudangdang.dao.entity.BookToClientforSingleBook;
 import com.example.administrator.zzudangdang.dao.entity.GoodsInfo;
 import com.example.administrator.zzudangdang.dao.entity.ShopCart;
+import com.example.administrator.zzudangdang.dao.entity.UserInfo;
 import com.example.administrator.zzudangdang.mengMadeShopCart.ShopCartActicity;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -50,6 +51,16 @@ public class JSONUtil {
         return shopCart;
     }
 
+    /**
+     * 这个方法用于解析用户界面需要返回的数据
+     * @param jsonData
+     * @return
+     */
+    public static UserInfo parseUserInfoWithGSON(String jsonData) {
+        Gson gson = new Gson();
+        UserInfo userInfo = gson.fromJson(jsonData, UserInfo.class);
+        return userInfo;
+    }
 
 
 

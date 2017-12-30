@@ -2,6 +2,7 @@ package com.example.administrator.zzudangdang.myinfo;
 
 import android.Manifest;
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.ContentUris;
 import android.content.Intent;
@@ -31,9 +32,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.bumptech.glide.Glide;
 import com.example.administrator.zzudangdang.R;
 import com.example.administrator.zzudangdang.dao.entity.Image;
+import com.example.administrator.zzudangdang.dao.entity.ShopCart;
+import com.example.administrator.zzudangdang.dao.entity.StoreInfo;
+import com.example.administrator.zzudangdang.dao.entity.UserInfo;
 import com.example.administrator.zzudangdang.util.ConstantUtil;
+import com.example.administrator.zzudangdang.util.JSONUtil;
 import com.example.administrator.zzudangdang.util.TakePictureManager;
 import com.example.administrator.zzudangdang.util.UploadImgFileUtil;
 import com.google.gson.Gson;
@@ -45,6 +51,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -76,13 +83,22 @@ import okhttp3.Response;
         //这么多活动的返回按钮可以用同一个来代替吗
 
 public class MyInfoActivity extends AppCompatActivity implements View.OnClickListener {
+
+    public static Activity instance;    //用于在其它活动中销毁此活动
+
+
     private static final String TAG = "MainActivity";
+
     private TextView textView_Self;
     private TextView textView_Name;
     private TextView textView_Sex;
     private TextView textView_We_No;
     private TextView textView_QQ_No;
     private TextView textView_Email;
+
+    //TODO 注意手机号和密码后期要存在手机上获取
+    private static String phone = "18838951998";   //用户手机号
+    private static String pasword = "123456"; //用户密码
 
     private View inflate;
     private Button choosePhoto;  //相机功能未实现完全
@@ -98,14 +114,26 @@ public class MyInfoActivity extends AppCompatActivity implements View.OnClickLis
     private static final int TAKE_PHOTO = 1;  //拍照
     private static final int CHOOSE_PHOTO = 2;  //选择照片
     private TakePictureManager takePictureManager;  //第三方类
-
     private ImageView head;
-    private Uri imageUri;
+
+    //下面是各组件要填充的内容
+    private String self_Text;       //自我介绍（节选）
+    private String self_Name;       //昵称
+    private String self_QQ;         //QQ号码
+    private String self_email;      //电子邮箱
+    private String self_Wechat;     //微信
+    private String head_uri;        //头像地址
+    private int self_sex;   //用户性别
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mycentergjj);
+        instance = this;
+        //初始化各组件
+        initView();
+    }
 
+    private void initView() {
         //昵称
         textView_Name =(TextView)findViewById(R.id.text_nickname);
         View viewname=(View) findViewById(R.id.view_nickname);
@@ -114,10 +142,11 @@ public class MyInfoActivity extends AppCompatActivity implements View.OnClickLis
             public void onClick(View v){
                 Log.e(TAG, "onClick: now click nickname");
                 Intent intent=new Intent(MyInfoActivity.this, NameActivity.class);
-                startActivityForResult(intent, CHANGE_NICK_NAME);
+                startActivity(intent);
             }
         });
 
+        head = (ImageView) findViewById(R.id.head);
         //性别
         textView_Sex=(TextView)findViewById(R.id.editsex);
         View viewsex=(View) findViewById(R.id.view_sex);
@@ -125,8 +154,8 @@ public class MyInfoActivity extends AppCompatActivity implements View.OnClickLis
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(MyInfoActivity.this, SexActivity.class);
-                startActivityForResult(intent,CHANGE_SEX);
-            }
+                startActivity(intent);
+                }
         });
 
         //自我描述
@@ -136,7 +165,7 @@ public class MyInfoActivity extends AppCompatActivity implements View.OnClickLis
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(MyInfoActivity.this, SelfInActivity.class);
-                startActivityForResult(intent,CHANGE_SELF);
+                startActivity(intent);
             }
         });
 
@@ -148,7 +177,7 @@ public class MyInfoActivity extends AppCompatActivity implements View.OnClickLis
             public void onClick(View v){
                 Log.e(TAG, "onClick: now click wechat");
                 Intent intent=new Intent(MyInfoActivity.this, WechatActivity.class);
-                startActivityForResult(intent, CHANGE_WECHAT_NO);
+                startActivity(intent);
             }
         });
 
@@ -159,7 +188,7 @@ public class MyInfoActivity extends AppCompatActivity implements View.OnClickLis
             @Override
             public void onClick(View v){
                 Intent intent=new Intent(MyInfoActivity.this, EmailActivity.class);
-                startActivityForResult(intent, CHANGE_EMAIL);
+                startActivity(intent);
             }
         });
 
@@ -170,9 +199,83 @@ public class MyInfoActivity extends AppCompatActivity implements View.OnClickLis
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(MyInfoActivity.this, QQActivity.class);
-                startActivityForResult(intent,CHANGE_QQ_NO);
+                startActivity(intent);
             }
         });
+
+        //初始化要填充的变量
+        initData();
+    }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        initView();
+    }
+
+    /**
+     * 初始化要填充的变量 TODO
+     */
+    private void initData() {
+        //网络请求来初始化变量
+        sendRequestForInfo();
+    }
+
+    private void sendRequestForInfo() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    OkHttpClient client = new OkHttpClient();
+                    Request request = new Request.Builder()
+                            .url(ConstantUtil.getServer() + "/User/getUserInfo?phone=" + phone + "&password=" + pasword)
+                            .build();
+                    System.out.println(ConstantUtil.getServer() + "/User/getUserInfo?phone=" + phone + "&password=" + pasword);
+                    Response response = client.newCall(request).execute();
+                    String jsonData = response.body().string();
+
+                    //根据请求到的数据对活动数据进行更新
+                    changeViewForResult(jsonData);
+                } catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+    }
+
+    //根据请求到的JSON数据对活动数据进行更新
+    private void changeViewForResult(final String jsonData) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                UserInfo userInfo = JSONUtil.parseUserInfoWithGSON(jsonData);
+                if (userInfo != null) {
+                    self_Text = userInfo.getIntroduce();       //自我介绍（节选）
+                    self_Name = userInfo.getNickname();       //昵称
+                    self_QQ = userInfo.getQq();         //QQ号码
+                    self_email = userInfo.getEmail();      //电子邮箱
+                    self_Wechat = userInfo.getWechat();     //微信
+                    head_uri = ConstantUtil.getServer() + "/" +  userInfo.getHead();        //头像地址
+                    self_sex = userInfo.getSex();   //用户性别
+                    //下面开始初始化各组件
+                    changeView();
+                }
+
+
+            }
+        });
+    }
+
+    private void changeView() {
+        textView_Self.setText(self_Text);
+        textView_Name.setText(self_Name);
+        textView_Sex.setText(self_sex == 0?"女":"男");
+        textView_We_No.setText(self_Wechat);
+        textView_QQ_No.setText(self_QQ);
+        textView_Email.setText(self_email);
+        //下面加载头像
+        displayImage(head_uri);
     }
 
 
@@ -275,6 +378,7 @@ public class MyInfoActivity extends AppCompatActivity implements View.OnClickLis
                 dialog.dismiss();
                 break;
 
+
         }
     }
 
@@ -301,11 +405,7 @@ public class MyInfoActivity extends AppCompatActivity implements View.OnClickLis
     }
 
 
-    private void openAlbum() { //打开相册
-        Intent intent = new Intent("android.intent.action.GET_CONTENT");
-        intent.setType("image/*");
-        startActivityForResult(intent, CHOOSE_PHOTO);
-    }
+
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -316,103 +416,20 @@ public class MyInfoActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         takePictureManager.attachToActivityForResult(requestCode, resultCode, data);
-        switch (requestCode) {  //启动活动
-            case CHANGE_NICK_NAME:
-                if(resultCode == RESULT_OK) {
-                    String name = data.getStringExtra("nickname");
-                    textView_Name.setText(name);
-                }
-                break;
-            case CHANGE_WECHAT_NO:
-                if(resultCode == RESULT_OK) {
-
-                    String wechatno = data.getStringExtra("wechatNo");
-                    textView_We_No.setText(wechatno);
-                }
-                break;
-            case CHANGE_QQ_NO:
-                if(resultCode == RESULT_OK) {
-
-                    String qqno = data.getStringExtra("qqNo");
-                    textView_QQ_No.setText(qqno);
-                }
-                break;
-            case CHANGE_SEX:
-                if(resultCode == RESULT_OK) {
-
-                    String sexmale = data.getStringExtra("sex");
-                    textView_Sex.setText(sexmale);
-                }
-                break;
-
-            case CHANGE_SELF:
-                if(resultCode == RESULT_OK) {
-
-                    String selfdescribe = data.getStringExtra("describe");
-                    textView_Self.setText(selfdescribe);
-                }
-                break;
-            case CHANGE_EMAIL:
-
-                if(requestCode == RESULT_OK){
-                    String emailText = data.getStringExtra("e_mail");
-                    textView_Email.setText(emailText);
-                }
-
-            default:
-                break;
-        }
     }
 
-    @TargetApi(19)
-    private void handleImageOnKitKat(Intent data) { //为了兼容老版本
-        String imagePath = null;
-        Uri uri = data.getData();
-        if (DocumentsContract.isDocumentUri(this, uri)) {
-            String docId = DocumentsContract.getDocumentId(uri);
-            if ("com.android.providers.media.documents".equals(uri.getAuthority())) {
-                String id = docId.split(":")[1];
-                String selection = MediaStore.Images.Media._ID + "=" + id;
-                imagePath = getImagePath(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, selection);
-            } else if ("com.android.providers.downloads.documents".equals(uri.getAuthority())) {
-                Uri contentUri = ContentUris.withAppendedId(Uri.parse("content://downloads/public_downloads"), Long.valueOf(docId));
-                imagePath = getImagePath(contentUri, null);
-            }
-        } else if ("content".equalsIgnoreCase(uri.getScheme())) {
-            imagePath = getImagePath(uri, null);
-        } else if ("file".equalsIgnoreCase(uri.getScheme())) {
-            imagePath = uri.getPath(); //获取图片的真是uri路径
-        }
-        displayImage(imagePath);
-    }
+
 
     private void displayImage(String imagePath) {
         if (imagePath != null) {
-            Bitmap bitmap = BitmapFactory.decodeFile(imagePath);
-            head.setImageBitmap(bitmap);
+            Glide.with(this).load(head_uri).placeholder(R.mipmap.ic_launcher).into(head);
         } else {
             Toast.makeText(this, "failed to get image", Toast.LENGTH_SHORT).show();
         }
     }
 
-    private String getImagePath(Uri uri, String selection) {
-        String path = null;
-        Cursor cursor = getContentResolver().query(uri, null, selection, null, null);
-        if (cursor != null) {
-            if (cursor.moveToFirst()) {
-                path = cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DATA));
-            }
-            cursor.close();
-        }
-        return path;
-    }
 
 
-    private void handleImageBeforeKitKat(Intent data) {
-        Uri uri = data.getData();
-        String imagePath = getImagePath(uri, null);
-        displayImage(imagePath);
-    }
 
 
 
