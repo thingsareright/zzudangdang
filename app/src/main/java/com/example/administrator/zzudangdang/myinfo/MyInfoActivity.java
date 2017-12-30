@@ -33,6 +33,7 @@ import android.widget.Toast;
 
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.administrator.zzudangdang.R;
 import com.example.administrator.zzudangdang.dao.entity.Image;
 import com.example.administrator.zzudangdang.dao.entity.ShopCart;
@@ -63,13 +64,6 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 //实现
-    // 从下一个活动传给上一个活动的信息，如昵称，性别，个人介绍，qq，微信，主页显示联系方式
-    //每点击一个按钮，按钮的颜色会变化，较为美观
-    //相机实现了可以从本地选择照片，但由于照片过大或者其他原因，导致点击照片时会闪退；
-    // 同时也实现了调用手机上自带的照相机，但是点击保存之后会闪退
-
-//未实现：
-    //上传照片相机功能未实现完全
 
 //待实现
     //编辑框，箭头界面可以优化  (微信標題換了個顔色，如果覺的可疑的話，後期可以統一換）
@@ -79,8 +73,7 @@ import okhttp3.Response;
 //待修改
         //SexAdapter未涉及到保存这个按钮，直接对radiobutton进行了监听，但是那个sexbutton.xml保存按钮未删除
 
-//疑问
-        //这么多活动的返回按钮可以用同一个来代替吗
+
 
 public class MyInfoActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -211,7 +204,6 @@ public class MyInfoActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     protected void onResume() {
         super.onResume();
-        initView();
     }
 
     /**
@@ -270,7 +262,7 @@ public class MyInfoActivity extends AppCompatActivity implements View.OnClickLis
     private void changeView() {
         textView_Self.setText(self_Text);
         textView_Name.setText(self_Name);
-        textView_Sex.setText(self_sex == 0?"女":"男");
+        textView_Sex.setText(self_sex == 1?"男":"女");
         textView_We_No.setText(self_Wechat);
         textView_QQ_No.setText(self_QQ);
         textView_Email.setText(self_email);
@@ -321,7 +313,7 @@ public class MyInfoActivity extends AppCompatActivity implements View.OnClickLis
                             //加密
                             String base64 = new String(Base64.encodeBase64(data));
                             //TODO 这里的userid暂且为1
-                            Image image = new Image("18838951998", base64);
+                            Image image = new Image(phone, base64);
                             String imageJson = new Gson().toJson(image);
                             sendRequestPostImage(imageJson);    //向服务器发送更改头像请求
                         } catch (FileNotFoundException e) {
@@ -359,7 +351,7 @@ public class MyInfoActivity extends AppCompatActivity implements View.OnClickLis
                         //加密
                         String base64 = new String(Base64.encodeBase64(data));
                         //TODO 这里的userid暂且为1
-                        Image image = new Image("18838951998", base64);
+                        Image image = new Image(phone, base64);
                         String imageJson = new Gson().toJson(image);
                         sendRequestPostImage(imageJson);    //向服务器发送更改头像请求
                         Toast.makeText(MyInfoActivity.this, "选择照片成功", Toast.LENGTH_SHORT).show();
@@ -400,6 +392,13 @@ public class MyInfoActivity extends AppCompatActivity implements View.OnClickLis
                 } catch (IOException e) {
                     e.printStackTrace();
                 } ;
+
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        initView();
+                    }
+                });
             }
         }).start();
     }
@@ -422,16 +421,11 @@ public class MyInfoActivity extends AppCompatActivity implements View.OnClickLis
 
     private void displayImage(String imagePath) {
         if (imagePath != null) {
-            Glide.with(this).load(head_uri).placeholder(R.mipmap.ic_launcher).into(head);
+            Glide.with(this).load(head_uri).diskCacheStrategy( DiskCacheStrategy.NONE) .skipMemoryCache(true).placeholder(R.mipmap.ic_launcher).into(head);
         } else {
             Toast.makeText(this, "failed to get image", Toast.LENGTH_SHORT).show();
         }
     }
-
-
-
-
-
 
 }
 

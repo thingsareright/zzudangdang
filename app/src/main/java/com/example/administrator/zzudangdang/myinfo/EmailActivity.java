@@ -46,7 +46,6 @@ public class EmailActivity extends AppCompatActivity {
                     //先销毁以前的活动
                     MyInfoActivity.instance.finish();
                     Intent intent =new Intent(getApplicationContext(),MyInfoActivity.class);
-                    intent.putExtra("e_mail",email);
                     startActivity(intent);
                     //发送数据给网络
                     sendRequestForChange(email);
