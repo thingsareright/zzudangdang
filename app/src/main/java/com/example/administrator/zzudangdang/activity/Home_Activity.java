@@ -15,6 +15,7 @@ import com.example.administrator.zzudangdang.R;
 import com.example.administrator.zzudangdang.adapter.RollHomeAdapter;
 import com.example.administrator.zzudangdang.mengMadeShopCart.ShopCartActicity;
 import com.example.administrator.zzudangdang.myinfo.MyInfoActivity;
+import com.example.administrator.zzudangdang.util.UserUtil;
 import com.jude.rollviewpager.RollPagerView;
 import com.jude.rollviewpager.hintview.ColorPointHintView;
 
@@ -80,13 +81,22 @@ public class Home_Activity extends AppCompatActivity {
         shoppingcar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Home_Activity.this,ShoppingCar_Activity.class));
+                if(UserUtil.getOnlyUser()!=null) {
+                    startActivity(new Intent(Home_Activity.this, ShoppingCar_Activity.class));
+                }else{
+                    startActivity(new Intent(Home_Activity.this,Login_Activity.class));
+                }
             }
         });
         mine.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Home_Activity.this,UserInformation_Activity.class));
+                if(UserUtil.getOnlyUser()!=null){
+                    startActivity(new Intent(Home_Activity.this,UserInformation_Activity.class));
+                }else{
+                    startActivity(new Intent(Home_Activity.this,Login_Activity.class));
+                }
+
             }
         });
         linearLayout.setOnClickListener(new View.OnClickListener() {

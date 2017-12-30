@@ -2,10 +2,8 @@ package com.example.administrator.zzudangdang.util;
 
 import com.example.administrator.zzudangdang.dao.entity.Book;
 import com.example.administrator.zzudangdang.dao.entity.BookToClientforSingleBook;
-import com.example.administrator.zzudangdang.dao.entity.GoodsInfo;
 import com.example.administrator.zzudangdang.dao.entity.ShopCart;
-import com.example.administrator.zzudangdang.dao.entity.UserInfo;
-import com.example.administrator.zzudangdang.mengMadeShopCart.ShopCartActicity;
+import com.example.administrator.zzudangdang.dao.entity.User;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -56,10 +54,10 @@ public class JSONUtil {
      * @param jsonData
      * @return
      */
-    public static UserInfo parseUserInfoWithGSON(String jsonData) {
+    public static User parseUserWithGSON(String jsonData) {
         Gson gson = new Gson();
-        UserInfo userInfo = gson.fromJson(jsonData, UserInfo.class);
-        return userInfo;
+        User user = gson.fromJson(jsonData, User.class);
+        return user;
     }
 
 

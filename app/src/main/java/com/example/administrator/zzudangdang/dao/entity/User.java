@@ -2,8 +2,9 @@ package com.example.administrator.zzudangdang.dao.entity;
 /**
  * 这个类用来向用户返回除了用户密码之外的其他信息
  */
-public class  UserInfo {
+public class User {
     private String phone;       //用户手机号，这是用户的唯一标识
+    private String password;       //用户手机号，这是用户的唯一标识
     private String head;        //用户的头像地址
     private String nickname;    //用户昵称
     private String introduce;   //个人介绍
@@ -12,10 +13,11 @@ public class  UserInfo {
     private String email;  //邮箱号
     private int sex;    //性别，1为男，0位女
 
-    public UserInfo() {
+    public User() {
+
     }
 
-    public UserInfo(String phone, String head, String nickname, String introduce, String qq, String wechat, String email,int sex) {
+    public User(String phone, String head, String nickname, String introduce, String qq, String wechat, String email, int sex) {
         this.phone = phone;
         this.head = head;
         this.nickname = nickname;
@@ -24,6 +26,14 @@ public class  UserInfo {
         this.wechat = wechat;
         this.email = email;
         this.sex = sex;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getPhone() {
@@ -89,4 +99,5 @@ public class  UserInfo {
     public void setSex(int sex) {
         this.sex = sex;
     }
+
 }

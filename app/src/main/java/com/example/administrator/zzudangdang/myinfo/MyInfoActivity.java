@@ -1,24 +1,11 @@
 package com.example.administrator.zzudangdang.myinfo;
 
-import android.Manifest;
-import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.Dialog;
-import android.content.ContentUris;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
-import android.provider.DocumentsContract;
-import android.provider.MediaStore;
 import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Gravity;
@@ -36,13 +23,10 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.administrator.zzudangdang.R;
 import com.example.administrator.zzudangdang.dao.entity.Image;
-import com.example.administrator.zzudangdang.dao.entity.ShopCart;
-import com.example.administrator.zzudangdang.dao.entity.StoreInfo;
-import com.example.administrator.zzudangdang.dao.entity.UserInfo;
+import com.example.administrator.zzudangdang.dao.entity.User;
 import com.example.administrator.zzudangdang.util.ConstantUtil;
 import com.example.administrator.zzudangdang.util.JSONUtil;
 import com.example.administrator.zzudangdang.util.TakePictureManager;
-import com.example.administrator.zzudangdang.util.UploadImgFileUtil;
 import com.google.gson.Gson;
 
 import org.apache.commons.codec.binary.Base64;
@@ -52,10 +36,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
@@ -241,15 +222,15 @@ public class MyInfoActivity extends AppCompatActivity implements View.OnClickLis
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                UserInfo userInfo = JSONUtil.parseUserInfoWithGSON(jsonData);
-                if (userInfo != null) {
-                    self_Text = userInfo.getIntroduce();       //自我介绍（节选）
-                    self_Name = userInfo.getNickname();       //昵称
-                    self_QQ = userInfo.getQq();         //QQ号码
-                    self_email = userInfo.getEmail();      //电子邮箱
-                    self_Wechat = userInfo.getWechat();     //微信
-                    head_uri = ConstantUtil.getServer() + "/" +  userInfo.getHead();        //头像地址
-                    self_sex = userInfo.getSex();   //用户性别
+                User user = JSONUtil.parseUserWithGSON(jsonData);
+                if (user != null) {
+                    self_Text = user.getIntroduce();       //自我介绍（节选）
+                    self_Name = user.getNickname();       //昵称
+                    self_QQ = user.getQq();         //QQ号码
+                    self_email = user.getEmail();      //电子邮箱
+                    self_Wechat = user.getWechat();     //微信
+                    head_uri = ConstantUtil.getServer() + "/" +  user.getHead();        //头像地址
+                    self_sex = user.getSex();   //用户性别
                     //下面开始初始化各组件
                     changeView();
                 }
