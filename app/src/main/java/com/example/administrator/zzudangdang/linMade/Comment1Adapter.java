@@ -42,7 +42,7 @@ public class Comment1Adapter extends RecyclerView.Adapter<Comment1Adapter.ViewHo
     }
 
     @Override
-    public void onBindViewHolder(Comment1Adapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(ViewHolder holder, int position) {
         Comment1 comment1 = mComment1List.get(position);
         holder.comment1Bimage.setImageResource(comment1.getBimage());
         holder.comment1Bname.setText(comment1.getBname());

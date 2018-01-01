@@ -22,6 +22,7 @@ public class Register2_Activity extends AppCompatActivity {
     private Button next;
     private EditText check;
     private String phone;
+    private String password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +31,7 @@ public class Register2_Activity extends AppCompatActivity {
 
 
         phone = getIntent().getStringExtra("phone");
+        password = getIntent().getStringExtra("password");
 
         next = (Button) findViewById(R.id.register2_button);
         check = (EditText) findViewById(R.id.register2_mycheck);
@@ -38,7 +40,7 @@ public class Register2_Activity extends AppCompatActivity {
             public void onClick(View view) {
 
                 if(!check.getText().toString().trim().equals("")){
-                    sendRequestForCheck(phone,check.getText().toString());
+                    sendRequestForCheck(phone,password,check.getText().toString());
                 }else{
                     Toast.makeText(MyApplication.getContext(),"验证码不能为空",Toast.LENGTH_SHORT).show();
                 }
@@ -51,7 +53,7 @@ public class Register2_Activity extends AppCompatActivity {
     /**
      * 这个方法用于向网络发送请求以验证验证码是否正确
      */
-    private void sendRequestForCheck(final String phone,final  String usercode) {
+    private void sendRequestForCheck(final String phone,final String password,final  String usercode) {
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -64,6 +66,10 @@ public class Register2_Activity extends AppCompatActivity {
                     String jsonData = response.body().string();
                     Log.d("MySQL",jsonData);   //todo
                     if(jsonData.equals("1")){
+                        request = new Request.Builder()
+                                .url(ConstantUtil.getServer() + "/User/registerUser/" + phone+"/"+password)
+                                .build();
+                        client.newCall(request).execute();
                         checkForResult();
                     }else{
                         Toast.makeText(Register2_Activity.this, "输入验证码错误", Toast.LENGTH_SHORT).show();

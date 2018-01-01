@@ -17,7 +17,7 @@
             android:layout_height="match_parent"
             android:text="商品订单"
             android:textColor="#000000"
-            android:textSize="30sp"
+            android:textSize="25sp"
             android:gravity="center"
             android:layout_centerHorizontal="true"/>
         <TextView
@@ -25,7 +25,7 @@
             android:layout_height="match_parent"
             android:text="搜索"
             android:textColor="#707070"
-            android:textSize="18sp"
+            android:textSize="15sp"
             android:gravity="center"
             android:drawableRight="@mipmap/search"
             android:layout_toLeftOf="@+id/screen"
@@ -36,7 +36,7 @@
             android:layout_height="match_parent"
             android:text="筛选"
             android:textColor="#707070"
-            android:textSize="18sp"
+            android:textSize="15sp"
             android:gravity="center"
             android:drawableRight="@mipmap/screen"
             android:layout_alignParentRight="true"
@@ -86,9 +86,11 @@
             android:textColor="#000000"
             android:gravity="center"/>
     </LinearLayout>
+
     <fragment
         android:id="@+id/fragment"
+        android:name="com.example.administrator.zzudangdang.singlebook.Fragment_lj"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="wrap_content"/>
 
 </LinearLayout>

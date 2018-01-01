@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.example.administrator.zzudangdang.R;
 import com.example.administrator.zzudangdang.util.ConstantUtil;
+import com.example.administrator.zzudangdang.util.UserUtil;
 
 import java.io.IOException;
 
@@ -20,8 +21,8 @@ import okhttp3.Response;
 public class WechatActivity extends AppCompatActivity {
 
     //TODO 用户手机号和密码以后都要初始化
-    private static String phone = "18838951998";
-    private static String password = "123456";
+    private static String phone = UserUtil.getOnlyUser().getPhone();
+    private static String password = UserUtil.getOnlyUser().getPassword();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

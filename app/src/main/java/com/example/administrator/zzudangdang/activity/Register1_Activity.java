@@ -20,8 +20,10 @@ public class Register1_Activity extends AppCompatActivity {
     private Button Ok;
     private VerificationCodeView mVerificationCodeView;
     private EditText phone_edit;
+    private EditText password_edit;
     private EditText myCheck;
     private String phone;
+    private String password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +32,7 @@ public class Register1_Activity extends AppCompatActivity {
 
         mVerificationCodeView = (VerificationCodeView) findViewById(R.id.register_code_view);
         phone_edit = (EditText) findViewById(R.id.register1_phone);
+        password_edit = (EditText) findViewById(R.id.register1_password);
         myCheck = (EditText) findViewById(R.id.register1_mycheck);
         Ok = (Button) findViewById(R.id.register1_next);
 
@@ -40,8 +43,10 @@ public class Register1_Activity extends AppCompatActivity {
 
                 if(myCheck.getText().toString().equals(mVerificationCodeView.getVerificationCode())){
                     phone = phone_edit.getText().toString();
+                    password = password_edit.getText().toString();
                     Intent intent = new Intent(Register1_Activity.this,Register2_Activity.class);
                     intent.putExtra("phone",phone);
+                    intent.putExtra("password",password);
                     startActivity(intent);
                     sendRequestForGetCheck(phone);
 

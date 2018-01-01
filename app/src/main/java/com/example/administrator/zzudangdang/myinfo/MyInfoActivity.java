@@ -27,6 +27,7 @@ import com.example.administrator.zzudangdang.dao.entity.User;
 import com.example.administrator.zzudangdang.util.ConstantUtil;
 import com.example.administrator.zzudangdang.util.JSONUtil;
 import com.example.administrator.zzudangdang.util.TakePictureManager;
+import com.example.administrator.zzudangdang.util.UserUtil;
 import com.google.gson.Gson;
 
 import org.apache.commons.codec.binary.Base64;
@@ -71,8 +72,8 @@ public class MyInfoActivity extends AppCompatActivity implements View.OnClickLis
     private TextView textView_Email;
 
     //TODO 注意手机号和密码后期要存在手机上获取
-    private static String phone = "18838951998";   //用户手机号
-    private static String pasword = "123456"; //用户密码
+    private static String phone = UserUtil.getOnlyUser().getPhone();
+    private static String password = UserUtil.getOnlyUser().getPassword();
 
     private View inflate;
     private Button choosePhoto;  //相机功能未实现完全
@@ -202,9 +203,9 @@ public class MyInfoActivity extends AppCompatActivity implements View.OnClickLis
                 try {
                     OkHttpClient client = new OkHttpClient();
                     Request request = new Request.Builder()
-                            .url(ConstantUtil.getServer() + "/User/getUserInfo?phone=" + phone + "&password=" + pasword)
+                            .url(ConstantUtil.getServer() + "/User/getUserInfo?phone=" + phone + "&password=" + password)
                             .build();
-                    System.out.println(ConstantUtil.getServer() + "/User/getUserInfo?phone=" + phone + "&password=" + pasword);
+                    System.out.println(ConstantUtil.getServer() + "/User/getUserInfo?phone=" + phone + "&password=" + password);
                     Response response = client.newCall(request).execute();
                     String jsonData = response.body().string();
 
