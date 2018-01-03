@@ -224,6 +224,8 @@ public class MyInfoActivity extends AppCompatActivity implements View.OnClickLis
             @Override
             public void run() {
                 User user = JSONUtil.parseUserWithGSON(jsonData);
+
+                UserUtil.setOnlyUser(user);
                 if (user != null) {
                     self_Text = user.getIntroduce();       //自我介绍（节选）
                     self_Name = user.getNickname();       //昵称

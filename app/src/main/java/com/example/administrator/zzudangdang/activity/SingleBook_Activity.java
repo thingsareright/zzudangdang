@@ -21,9 +21,14 @@ import android.widget.TextView;
 import com.example.administrator.zzudangdang.R;
 import com.example.administrator.zzudangdang.dao.entity.BookToClientforSingleBook;
 import com.example.administrator.zzudangdang.adapter.BookPagerAdapter;
+import com.example.administrator.zzudangdang.util.ConstantUtil;
+import com.example.administrator.zzudangdang.util.UserUtil;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
 
 /**
  * Created by 沐莲心 on 2017/12/13.
@@ -61,7 +66,7 @@ public class SingleBook_Activity extends AppCompatActivity {
     private int i = 0;
 
     //这个对象封装了数据
-    private BookToClientforSingleBook bookToClientforSingleBook;
+    public static BookToClientforSingleBook bookToClientforSingleBook;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,7 +78,6 @@ public class SingleBook_Activity extends AppCompatActivity {
         relativeLayout_lj = (RelativeLayout) findViewById(R.id.relativeLayout_lj);
         count = (TextView) findViewById(R.id.count_lj);
         final ImageView iv = (ImageView) findViewById(R.id.iv);;
-        Button addcart = (Button) findViewById(R.id.addcart_lj);
         addcart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -204,6 +208,9 @@ public class SingleBook_Activity extends AppCompatActivity {
      * @param iv
      */
     private void addCart( ImageView iv) {
+
+        sendRequestForNewShoppingCart(UserUtil.getOnlyUser().getPhone(),bookToClientforSingleBook.getBossid(),bookToClientforSingleBook.getBossid(),1);
+
 //      一、创造出执行动画的主题---imageview
         //代码new一个imageview，图片资源是上面的imageview的图片
         // (这个图片就是执行动画的图片，从开始位置出发，经过一个抛物线（贝塞尔曲线），移动到购物车里)
@@ -297,6 +304,30 @@ public class SingleBook_Activity extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void sendRequestForNewShoppingCart(final String phone,final int bookid,final int bossid,final int num) {
+
+
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+
+                try {
+                    OkHttpClient client = new OkHttpClient();
+
+                    //暂定数量加1
+                    Request request = new Request.Builder()
+                            .url(ConstantUtil.getServer() + "/ShopCart/insertShopCart?phone=" + phone+"&bookid="+bookid+"&bossid="+bossid+"&num="+1)
+                            .build();
+                    client.newCall(request).execute();
+
+                } catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+        }).start();
     }
 
 }

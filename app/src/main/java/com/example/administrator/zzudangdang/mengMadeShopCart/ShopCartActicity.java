@@ -25,6 +25,7 @@ import com.example.administrator.zzudangdang.dao.entity.ShopCart;
 import com.example.administrator.zzudangdang.dao.entity.StoreInfo;
 import com.example.administrator.zzudangdang.util.ConstantUtil;
 import com.example.administrator.zzudangdang.util.JSONUtil;
+import com.example.administrator.zzudangdang.util.UserUtil;
 import com.example.administrator.zzudangdang.util.UtilTool;
 import com.example.administrator.zzudangdang.util.UtilsLog;
 
@@ -203,7 +204,7 @@ public class ShopCartActicity extends AppCompatActivity implements View.OnClickL
      */
     private void initData() {
         mcontext = this;
-        String phone = new String("18838951998");
+        String phone = UserUtil.getOnlyUser().getPhone();
         //向服务器发送请求以获得数据
         requestForData(phone);
     }

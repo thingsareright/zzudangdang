@@ -82,7 +82,7 @@ public class Home_Activity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(UserUtil.getOnlyUser()!=null) {
-                    startActivity(new Intent(Home_Activity.this, ShoppingCar_Activity.class));
+                    startActivity(new Intent(Home_Activity.this, ShopCartActicity.class));
                 }else{
                     startActivity(new Intent(Home_Activity.this,Login_Activity.class));
                 }

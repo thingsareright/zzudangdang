@@ -168,8 +168,8 @@ public class BookPagerAdapter extends PagerAdapter {
                     activity.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            BookToClientforSingleBook bookToClientforSingleBook = JSONUtil.parseSingleBookWithGSON(jsonData);
-                            setDataForView(bookToClientforSingleBook);
+                            SingleBook_Activity.bookToClientforSingleBook= JSONUtil.parseSingleBookWithGSON(jsonData);
+                            setDataForView(SingleBook_Activity.bookToClientforSingleBook);
                         }
                     });
 
