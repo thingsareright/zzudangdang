@@ -6,11 +6,10 @@ package com.example.administrator.zzudangdang.util;
  */
 
 public class ConstantUtil {
-    private static String server = "http://120.78.178.186:5002";
+    private static String server = "http://11df67cd.ngrok.io";
     public static String getServer() {
         return server;
     }
-
     public static void setServer(String server) {
         ConstantUtil.server = server;
     }

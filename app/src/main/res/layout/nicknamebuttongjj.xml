@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/returnname"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/return2" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="昵称"
+            android:textSize="20sp"/>
+
+        <TextView
+            android:id="@+id/saveNickname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#fc643e"
+            android:textSize="18sp"
+            android:text="保存"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="14dp" />
+    </RelativeLayout>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="10dp" />
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:src="@color/line"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/editname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+
+
+</LinearLayout>

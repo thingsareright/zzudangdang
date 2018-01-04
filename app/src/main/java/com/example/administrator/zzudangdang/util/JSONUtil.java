@@ -2,6 +2,8 @@ package com.example.administrator.zzudangdang.util;
 
 import com.example.administrator.zzudangdang.dao.entity.Book;
 import com.example.administrator.zzudangdang.dao.entity.BookToClientforSingleBook;
+import com.example.administrator.zzudangdang.dao.entity.ShopCart;
+import com.example.administrator.zzudangdang.dao.entity.User;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -35,4 +37,29 @@ public class JSONUtil {
         BookToClientforSingleBook book = gson.fromJson(jsonData, BookToClientforSingleBook.class);
         return book;
     }
+
+    /**
+     * 这个方法用于解析购物车界面需要返回的数据
+     * @param jsonData
+     * @return
+     */
+    public static ShopCart parseShopCarWithGSON(String jsonData) {
+        Gson gson = new Gson();
+        ShopCart shopCart = gson.fromJson(jsonData, ShopCart.class);
+        return shopCart;
+    }
+
+    /**
+     * 这个方法用于解析用户界面需要返回的数据
+     * @param jsonData
+     * @return
+     */
+    public static User parseUserWithGSON(String jsonData) {
+        Gson gson = new Gson();
+        User user = gson.fromJson(jsonData, User.class);
+        return user;
+    }
+
+
+
 }
