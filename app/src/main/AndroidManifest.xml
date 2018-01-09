@@ -54,6 +54,7 @@
         <activity android:name=".activity.Register1_Activity"></activity>
         <activity android:name=".activity.Register2_Activity"></activity>
         <activity android:name=".activity.Register3_Activity"></activity>
+        <activity android:name=".activity.Order_Acticity"></activity>
 
 
     </application>

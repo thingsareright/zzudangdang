@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.administrator.zzudangdang.R;
 import com.example.administrator.zzudangdang.dao.entity.BookToClientforSingleBook;
@@ -57,6 +58,7 @@ public class SingleBook_Activity extends AppCompatActivity {
     public static int bossid;
 
     private Button cart;
+    private Button buy;
     private Button addcart;
     private ImageView iv;
     private RelativeLayout relativeLayout_lj;
@@ -74,6 +76,7 @@ public class SingleBook_Activity extends AppCompatActivity {
         initView();
 
         cart = (Button) findViewById(R.id.cart1_lj);
+        buy = (Button) findViewById(R.id.buynow_lj);
         addcart = (Button) findViewById(R.id.addcart_lj);
         relativeLayout_lj = (RelativeLayout) findViewById(R.id.relativeLayout_lj);
         count = (TextView) findViewById(R.id.count_lj);
@@ -173,12 +176,20 @@ public class SingleBook_Activity extends AppCompatActivity {
 
             }
         });
+        buy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View arg0) {
+                sendRequestForOrder(UserUtil.getOnlyUser().getPhone(),bookToClientforSingleBook.getBossid(),bookToClientforSingleBook.getBossid(),1);
+                Toast.makeText(SingleBook_Activity.this,"添加订单成功",Toast.LENGTH_SHORT).show();
+            }
+        });
         textView1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
                 viewPager.setCurrentItem(0);
             }
         });
+
         textView2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
@@ -320,6 +331,30 @@ public class SingleBook_Activity extends AppCompatActivity {
                     //暂定数量加1
                     Request request = new Request.Builder()
                             .url(ConstantUtil.getServer() + "/ShopCart/insertShopCart?phone=" + phone+"&bookid="+bookid+"&bossid="+bossid+"&num="+1)
+                            .build();
+                    client.newCall(request).execute();
+
+                } catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+    }
+
+    private void sendRequestForOrder(final String phone,final int bookid,final int bossid,final int num) {
+
+
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+
+                try {
+                    OkHttpClient client = new OkHttpClient();
+
+                    //暂定数量加1
+                    Request request = new Request.Builder()
+                            .url(ConstantUtil.getServer() + "/Order/insertOrder?phone=" + phone+"&bookid="+bookid+"&bossid="+bossid+"&num="+1)
                             .build();
                     client.newCall(request).execute();
 

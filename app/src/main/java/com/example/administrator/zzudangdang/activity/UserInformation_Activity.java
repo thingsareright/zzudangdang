@@ -19,6 +19,7 @@ public class UserInformation_Activity extends AppCompatActivity {
     //这只一个toolbar，单位显示上面的文字
 
     ImageButton head;
+    Button order;
     TextView phone;
 
     @Override
@@ -29,6 +30,7 @@ public class UserInformation_Activity extends AppCompatActivity {
         //setSupportActionBar(toolbar);
 
         head = (ImageButton) findViewById(R.id.head);
+        order = (Button) findViewById(R.id.user_myorder);
         phone = (TextView) findViewById(R.id.UserInformation_phone);
         if(UserUtil.getOnlyUser().getHead()!=null){
             Glide.with(this).load(ConstantUtil.getServer()+"/"+UserUtil.getOnlyUser().getHead()).placeholder(R.drawable.cmaz).into(head);
@@ -40,6 +42,12 @@ public class UserInformation_Activity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(UserInformation_Activity.this, MyInfoActivity.class));
+            }
+        });
+        order.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(UserInformation_Activity.this, Order_Acticity.class));
             }
         });
 

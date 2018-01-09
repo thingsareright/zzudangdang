@@ -1,6 +1,6 @@
 package com.example.administrator.zzudangdang.dao.entity;
 
-/**
+ /**
  * Created by Administrator on 2017/3/26.
  * 商品信息
  */
@@ -13,7 +13,7 @@ public class GoodsInfo {
     private double price;
     private double prime_price;
     private int postion;
-    private int count;  //这里要特别注意，count才是用户要购买的数量
+    private int count; //某用户购买某商品的数量
     private String color;
     private String goodsImg;
     private int number;
@@ -29,6 +29,9 @@ public class GoodsInfo {
         this.goodsImg = goodsImg;
         this.number = number;
     }
+
+
+
 
     public int getId() {
         return id;
