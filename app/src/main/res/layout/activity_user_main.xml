@@ -27,8 +27,8 @@
                     android:id="@+id/UserInformation_phone" />  <!--为很好的实现，所以以文字代替-->
                 <ImageButton
                     android:id="@+id/head"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
                     android:src="@mipmap/ic_launcher_round"
                     android:background="#df3d12"
                     android:layout_alignParentBottom="true"

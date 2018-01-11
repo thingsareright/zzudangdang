@@ -225,7 +225,7 @@ public class MyInfoActivity extends AppCompatActivity implements View.OnClickLis
             public void run() {
                 User user = JSONUtil.parseUserWithGSON(jsonData);
 
-                UserUtil.setOnlyUser(user);
+
                 if (user != null) {
                     self_Text = user.getIntroduce();       //自我介绍（节选）
                     self_Name = user.getNickname();       //昵称
@@ -237,7 +237,7 @@ public class MyInfoActivity extends AppCompatActivity implements View.OnClickLis
                     //下面开始初始化各组件
                     changeView();
                 }
-
+                UserUtil.setOnlyUser(user);
 
             }
         });

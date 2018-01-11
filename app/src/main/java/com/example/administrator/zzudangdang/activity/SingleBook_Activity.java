@@ -2,6 +2,7 @@ package com.example.administrator.zzudangdang.activity;
 
 import android.animation.Animator;
 import android.animation.ValueAnimator;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Matrix;
 import android.graphics.Path;
@@ -22,6 +23,7 @@ import android.widget.Toast;
 import com.example.administrator.zzudangdang.R;
 import com.example.administrator.zzudangdang.dao.entity.BookToClientforSingleBook;
 import com.example.administrator.zzudangdang.adapter.BookPagerAdapter;
+import com.example.administrator.zzudangdang.mengMadeShopCart.ShopCartActicity;
 import com.example.administrator.zzudangdang.util.ConstantUtil;
 import com.example.administrator.zzudangdang.util.UserUtil;
 
@@ -74,20 +76,6 @@ public class SingleBook_Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initView();
-
-        cart = (Button) findViewById(R.id.cart1_lj);
-        buy = (Button) findViewById(R.id.buynow_lj);
-        addcart = (Button) findViewById(R.id.addcart_lj);
-        relativeLayout_lj = (RelativeLayout) findViewById(R.id.relativeLayout_lj);
-        count = (TextView) findViewById(R.id.count_lj);
-        final ImageView iv = (ImageView) findViewById(R.id.iv);;
-        addcart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                addCart(iv);
-            }
-        });
-
         bookid = getIntent().getIntExtra("bookid",1);
         bossid = getIntent().getIntExtra("bossid",1);
 
@@ -101,6 +89,13 @@ public class SingleBook_Activity extends AppCompatActivity {
         textView2 = (TextView) findViewById(R.id.introduce);
         textView3 = (TextView) findViewById(R.id.comments);
         textView4 = (TextView) findViewById(R.id.recommends);
+
+        cart = (Button) findViewById(R.id.cart1_lj);
+        buy = (Button) findViewById(R.id.buynow_lj);
+        addcart = (Button) findViewById(R.id.addcart_lj);
+        relativeLayout_lj = (RelativeLayout) findViewById(R.id.relativeLayout_lj);
+        count = (TextView) findViewById(R.id.count_lj);
+        final ImageView iv = (ImageView) findViewById(R.id.iv);
 
         lists.add(getLayoutInflater().inflate(R.layout.singlebook_page1_lj, null));
         lists.add(getLayoutInflater().inflate(R.layout.singlebook_page2_lj, null));
@@ -179,17 +174,43 @@ public class SingleBook_Activity extends AppCompatActivity {
         buy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
-                sendRequestForOrder(UserUtil.getOnlyUser().getPhone(),bookToClientforSingleBook.getBossid(),bookToClientforSingleBook.getBossid(),1);
-                Toast.makeText(SingleBook_Activity.this,"添加订单成功",Toast.LENGTH_SHORT).show();
+
+                if(UserUtil.getOnlyUser()!=null){
+                    sendRequestForOrder(UserUtil.getOnlyUser().getPhone(),bookToClientforSingleBook.getBossid(),bookToClientforSingleBook.getBossid(),1);
+                    Toast.makeText(SingleBook_Activity.this,"添加订单成功",Toast.LENGTH_SHORT).show();
+                }else{
+                    startActivity(new Intent(SingleBook_Activity.this,Login_Activity.class));
+                }
             }
         });
+
+        addcart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(UserUtil.getOnlyUser()!=null){
+                    addCart(iv);
+                }else {
+                    startActivity(new Intent(SingleBook_Activity.this,Login_Activity.class));
+                }
+            }
+        });
+        cart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(UserUtil.getOnlyUser()!=null){
+                    startActivity(new Intent(SingleBook_Activity.this, ShopCartActicity.class));
+                }else {
+                    startActivity(new Intent(SingleBook_Activity.this,Login_Activity.class));
+                }
+            }
+        });
+
         textView1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
                 viewPager.setCurrentItem(0);
             }
         });
-
         textView2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {

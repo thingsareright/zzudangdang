@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.administrator.zzudangdang.R;
 import com.example.administrator.zzudangdang.myinfo.MyInfoActivity;
 import com.example.administrator.zzudangdang.util.ConstantUtil;
@@ -33,7 +34,7 @@ public class UserInformation_Activity extends AppCompatActivity {
         order = (Button) findViewById(R.id.user_myorder);
         phone = (TextView) findViewById(R.id.UserInformation_phone);
         if(UserUtil.getOnlyUser().getHead()!=null){
-            Glide.with(this).load(ConstantUtil.getServer()+"/"+UserUtil.getOnlyUser().getHead()).placeholder(R.drawable.cmaz).into(head);
+            Glide.with(this).load(ConstantUtil.getServer()+"/"+UserUtil.getOnlyUser().getHead()).diskCacheStrategy( DiskCacheStrategy.NONE).skipMemoryCache(true).placeholder(R.drawable.cmaz).into(head);
         }
 
         phone.setText(UserUtil.getOnlyUser().getPhone()+"\n普通会员");

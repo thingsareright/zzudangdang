@@ -215,9 +215,9 @@ public class Order_Acticity extends AppCompatActivity implements View.OnClickLis
                 try {
                     OkHttpClient client = new OkHttpClient();
                     Request request = new Request.Builder()
-                            .url(ConstantUtil.getServer() + "/Order/forOrderinCart?phone=" + phone)
+                            .url(ConstantUtil.getServer() + "/Order/forOrder?phone=" + phone)
                             .build();
-                    System.out.println(ConstantUtil.getServer() + "/Order/forOrderinCart?phone=" + phone);
+                    System.out.println(ConstantUtil.getServer() + "/Order/forOrder?phone=" + phone);
                     Response response = client.newCall(request).execute();
                     String jsonData = response.body().string();
 
