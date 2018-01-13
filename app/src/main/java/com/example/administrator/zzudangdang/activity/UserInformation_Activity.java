@@ -1,5 +1,7 @@
 package com.example.administrator.zzudangdang.activity;
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -17,24 +19,39 @@ import com.example.administrator.zzudangdang.util.UserUtil;
 
 
 public class UserInformation_Activity extends AppCompatActivity {
-    //这只一个toolbar，单位显示上面的文字
+
+    SwipeRefreshLayout swipeRefreshLayout;
 
     ImageButton head;
     Button order;
     TextView phone;
 
+    @SuppressLint("ResourceAsColor")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_main);
        // Toolbar toolbar=(Toolbar) findViewById(R.id.toolbar);
         //setSupportActionBar(toolbar);
-
+        swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.UserInformationRefresh);
         head = (ImageButton) findViewById(R.id.head);
         order = (Button) findViewById(R.id.user_myorder);
         phone = (TextView) findViewById(R.id.UserInformation_phone);
 
+        swipeRefreshLayout.setColorSchemeColors(R.color.red);
 
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                initView();
+            }
+        });
+
+        initView();
+
+    }
+
+    private void initView() {
         phone.setText(UserUtil.getOnlyUser().getPhone()+"\n普通会员");
         if(UserUtil.getOnlyUser().getHead()!=null){
             String headuri = ConstantUtil.getServer() + "/" + UserUtil.getOnlyUser().getHead();
@@ -52,9 +69,8 @@ public class UserInformation_Activity extends AppCompatActivity {
                 startActivity(new Intent(UserInformation_Activity.this, Order_Acticity.class));
             }
         });
-
+        swipeRefreshLayout.setRefreshing(false);
     }
-
 
 
 }

@@ -1,183 +1,188 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.administrator.zzudangdang.activity.UserInformation_Activity"
+    android:id="@+id/UserInformationRefresh"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="com.example.administrator.zzudangdang.activity.UserInformation_Activity">
-    <LinearLayout
+    android:layout_height="match_parent">
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:background="@color/colorPrimary_gjs"
-            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="70dp">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="188***321\n普通会员"
-                    android:id="@+id/UserInformation_phone" />  <!--为很好的实现，所以以文字代替-->
-                <ImageButton
-                    android:id="@+id/head"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:src="@mipmap/yinlin"
-                    android:background="#df3d12"
-                    android:layout_alignParentBottom="true"
-                    android:layout_centerHorizontal="true" />
-                <ImageButton
-                    android:id="@+id/imageButton1"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:src="@drawable/news"
-                    android:layout_alignTop="@+id/imageButton2"
-                    android:layout_toStartOf="@+id/imageButton2" />
-
-                <ImageButton
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:src="@drawable/settings"
-                    android:id="@+id/imageButton2"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentEnd="true" />
-            </RelativeLayout>
-        </android.support.v7.widget.Toolbar>
-
+        android:orientation="vertical"
+        >
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <Button
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="0\n可用礼券"
-                android:background="#FFFFFF"></Button>
-
-            <Button
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="0\n积分抵现"
-                android:background="#FFFFFF"/>
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="0\n礼品卡"
-                android:background="#FFFFFF"/>
-
-            <Button
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="#FFFFFF"
-                android:text="0\n余额" />
-        </LinearLayout>
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="5dp" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical">
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:background="@color/colorPrimary_gjs"
+                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="188***321\n普通会员"
+                        android:id="@+id/UserInformation_phone" />  <!--为很好的实现，所以以文字代替-->
+                    <ImageButton
+                        android:id="@+id/head"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:src="@mipmap/yinlin"
+                        android:background="#df3d12"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true" />
+                    <ImageButton
+                        android:id="@+id/imageButton1"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:src="@drawable/news"
+                        android:layout_alignTop="@+id/imageButton2"
+                        android:layout_toStartOf="@+id/imageButton2" />
+
+                    <ImageButton
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:src="@drawable/settings"
+                        android:id="@+id/imageButton2"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true" />
+                </RelativeLayout>
+            </android.support.v7.widget.Toolbar>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-                <Button
-                    android:id="@+id/user_myorder"
-                    android:layout_height="50dp"
-                    android:layout_width="wrap_content"
-                    android:text="我的订单"
-                    android:background="#ffffff"/>
+
                 <Button
                     android:layout_width="0dp"
-                    android:layout_height="50dp"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="查看所有订单>"
-                    android:gravity="right|center"
-                    android:textColor="#df3d12"
+                    android:text="0\n可用礼券"
+                    android:background="#FFFFFF"></Button>
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="0\n积分抵现"
                     android:background="#FFFFFF"/>
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="0\n礼品卡"
+                    android:background="#FFFFFF"/>
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="#FFFFFF"
+                    android:text="0\n余额" />
+            </LinearLayout>
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="5dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <Button
+                        android:id="@+id/user_myorder"
+                        android:layout_height="50dp"
+                        android:layout_width="wrap_content"
+                        android:text="我的订单"
+                        android:background="#ffffff"/>
+                    <Button
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_weight="1"
+                        android:text="查看所有订单>"
+                        android:gravity="right|center"
+                        android:textColor="#df3d12"
+                        android:background="#FFFFFF"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <Button
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="待付款"
+                        android:paddingLeft="5dp"
+                        android:paddingTop="5dp"
+                        android:paddingRight="5dp"
+                        android:paddingBottom="5dp"
+                        android:drawableTop="@drawable/pay"
+                        android:background="#FFFFFF">
+                    </Button>
+                    <Button
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="待发货"
+                        android:paddingLeft="5dp"
+                        android:paddingTop="5dp"
+                        android:paddingRight="5dp"
+                        android:paddingBottom="5dp"
+                        android:drawableTop="@drawable/deliver"
+                        android:background="#FFFFFF">
+                    </Button>
+                    <Button
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="待收货"
+                        android:paddingLeft="5dp"
+                        android:paddingTop="5dp"
+                        android:paddingRight="5dp"
+                        android:paddingBottom="5dp"
+                        android:drawableTop="@drawable/receive"
+                        android:background="#FFFFFF">
+                    </Button>
+                    <Button
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="待评论"
+                        android:paddingLeft="5dp"
+                        android:paddingTop="5dp"
+                        android:paddingRight="5dp"
+                        android:paddingBottom="5dp"
+                        android:drawableTop="@drawable/comment"
+                        android:background="#FFFFFF">
+                    </Button>
+                    <Button
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="退款/售后"
+                        android:paddingLeft="5dp"
+                        android:paddingTop="5dp"
+                        android:paddingRight="5dp"
+                        android:paddingBottom="5dp"
+                        android:drawableTop="@drawable/return1"
+                        android:background="#FFFFFF">
+                    </Button>
+                </LinearLayout>
             </LinearLayout>
             <LinearLayout
+                android:layout_marginTop="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-                <Button
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:text="待付款"
-                    android:paddingLeft="5dp"
-                    android:paddingTop="5dp"
-                    android:paddingRight="5dp"
-                    android:paddingBottom="5dp"
-                    android:drawableTop="@drawable/pay"
-                    android:background="#FFFFFF">
-                </Button>
-                <Button
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:text="待发货"
-                    android:paddingLeft="5dp"
-                    android:paddingTop="5dp"
-                    android:paddingRight="5dp"
-                    android:paddingBottom="5dp"
-                    android:drawableTop="@drawable/deliver"
-                    android:background="#FFFFFF">
-                </Button>
-                <Button
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:text="待收货"
-                    android:paddingLeft="5dp"
-                    android:paddingTop="5dp"
-                    android:paddingRight="5dp"
-                    android:paddingBottom="5dp"
-                    android:drawableTop="@drawable/receive"
-                    android:background="#FFFFFF">
-                </Button>
-                <Button
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:text="待评论"
-                    android:paddingLeft="5dp"
-                    android:paddingTop="5dp"
-                    android:paddingRight="5dp"
-                    android:paddingBottom="5dp"
-                    android:drawableTop="@drawable/comment"
-                    android:background="#FFFFFF">
-                </Button>
-                <Button
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:text="退款/售后"
-                    android:paddingLeft="5dp"
-                    android:paddingTop="5dp"
-                    android:paddingRight="5dp"
-                    android:paddingBottom="5dp"
-                    android:drawableTop="@drawable/return1"
-                    android:background="#FFFFFF">
-                </Button>
-        </LinearLayout>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_marginTop="5dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -191,20 +196,20 @@
                     android:gravity="right|center"
                     android:text="立即体验>"
                     android:background="#FFFFFF"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginTop="5dp">
-            <Button
-                android:id="@+id/button"
+            </LinearLayout>
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:background="#FFFFFF"
-                android:gravity="left|center"
-                android:text="     我的工具" />
-        </LinearLayout>
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="5dp">
+                <Button
+                    android:id="@+id/button"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:background="#FFFFFF"
+                    android:gravity="left|center"
+                    android:text="     我的工具" />
+            </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -311,52 +316,52 @@
             </LinearLayout>
 
 
-        <Button
-            android:layout_marginTop="5dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#FFFFFF"
-            android:text="当当优品超级品牌日10元秒杀兑换百元好礼    "
-            android:drawableLeft="@drawable/qiang"
-            android:drawableRight="@drawable/direct"/>
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#FFFFFF"
-            android:text="当当优品超级品牌日10元秒杀兑换百元好礼    "
-            android:drawableLeft="@drawable/qiang"
-            android:drawableRight="@drawable/direct"/>
+            <Button
+                android:layout_marginTop="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#FFFFFF"
+                android:text="当当优品超级品牌日10元秒杀兑换百元好礼    "
+                android:drawableLeft="@drawable/qiang"
+                android:drawableRight="@drawable/direct"/>
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#FFFFFF"
+                android:text="当当优品超级品牌日10元秒杀兑换百元好礼    "
+                android:drawableLeft="@drawable/qiang"
+                android:drawableRight="@drawable/direct"/>
 
-        <Button
-            android:id="@+id/button3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#FFFFFF"
-            android:drawableLeft="@drawable/qiang"
-            android:drawableRight="@drawable/direct"
-            android:text="当当优品超级品牌日10元秒杀兑换百元好礼    " />
+            <Button
+                android:id="@+id/button3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#FFFFFF"
+                android:drawableLeft="@drawable/qiang"
+                android:drawableRight="@drawable/direct"
+                android:text="当当优品超级品牌日10元秒杀兑换百元好礼    " />
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#FFFFFF"
-            android:text="当当优品超级品牌日10元秒杀兑换百元好礼    "
-            android:drawableLeft="@drawable/qiang"
-            android:drawableRight="@drawable/direct"/>
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#FFFFFF"
-            android:text="当当优品超级品牌日10元秒杀兑换百元好礼    "
-            android:drawableLeft="@drawable/qiang"
-            android:drawableRight="@drawable/direct"/>
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#FFFFFF"
-            android:text="当当优品超级品牌日10元秒杀兑换百元好礼    "
-            android:drawableLeft="@drawable/qiang"
-            android:drawableRight="@drawable/direct"/>
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#FFFFFF"
+                android:text="当当优品超级品牌日10元秒杀兑换百元好礼    "
+                android:drawableLeft="@drawable/qiang"
+                android:drawableRight="@drawable/direct"/>
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#FFFFFF"
+                android:text="当当优品超级品牌日10元秒杀兑换百元好礼    "
+                android:drawableLeft="@drawable/qiang"
+                android:drawableRight="@drawable/direct"/>
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#FFFFFF"
+                android:text="当当优品超级品牌日10元秒杀兑换百元好礼    "
+                android:drawableLeft="@drawable/qiang"
+                android:drawableRight="@drawable/direct"/>
 
             <TextView
                 android:layout_marginTop="5dp"
@@ -375,12 +380,15 @@
                 android:gravity="center"
                 android:background="#dcdcdc"/>
 
-        <android.support.v7.widget.RecyclerView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            <android.support.v7.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-        </android.support.v7.widget.RecyclerView>
+            </android.support.v7.widget.RecyclerView>
 
-    </LinearLayout>
+        </LinearLayout>
 
-</ScrollView>
+    </ScrollView>
+</android.support.v4.widget.SwipeRefreshLayout>
+
+
