@@ -20,7 +20,8 @@
         <activity android:name=".activity.BookList_Activity" />
         <activity android:name=".activity.SingleBook_Activity" />
         <activity android:name=".activity.UserInformation_Activity" />
-        <activity android:name=".activity.Home_Activity">
+        <activity android:name=".activity.Home_Activity"
+            android:windowSoftInputMode="stateHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
