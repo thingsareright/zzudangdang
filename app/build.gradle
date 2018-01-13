@@ -40,7 +40,7 @@ dependencies {
     compile 'in.srain.cube:ultra-ptr:1.0.11'
     implementation files('src/main/libs/commons-codec-1.11.jar')
     implementation 'com.againstsky:vcode:1.0.1'
-
+    compile 'com.anupcowkur:reservoir:3.1.0'
 }
 
 configurations.all {
