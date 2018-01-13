@@ -33,12 +33,13 @@ public class UserInformation_Activity extends AppCompatActivity {
         head = (ImageButton) findViewById(R.id.head);
         order = (Button) findViewById(R.id.user_myorder);
         phone = (TextView) findViewById(R.id.UserInformation_phone);
-        if(UserUtil.getOnlyUser().getHead()!=null){
-            Glide.with(this).load(ConstantUtil.getServer()+"/"+UserUtil.getOnlyUser().getHead()).diskCacheStrategy( DiskCacheStrategy.NONE).skipMemoryCache(true).placeholder(R.drawable.cmaz).into(head);
-        }
+
 
         phone.setText(UserUtil.getOnlyUser().getPhone()+"\n普通会员");
-
+        if(UserUtil.getOnlyUser().getHead()!=null){
+            String headuri = ConstantUtil.getServer() + "/" + UserUtil.getOnlyUser().getHead();
+            Glide.with(getApplication()).load(ConstantUtil.getServer()+"/"+UserUtil.getOnlyUser().getHead()).diskCacheStrategy( DiskCacheStrategy.NONE).skipMemoryCache(true).placeholder(R.mipmap.yinlin).into(head);
+        }
         head.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

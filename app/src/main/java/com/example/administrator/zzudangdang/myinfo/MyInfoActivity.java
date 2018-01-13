@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Gravity;
@@ -39,6 +40,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
+import butterknife.BindView;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -71,7 +73,6 @@ public class MyInfoActivity extends AppCompatActivity implements View.OnClickLis
     private TextView textView_QQ_No;
     private TextView textView_Email;
 
-    //TODO 注意手机号和密码后期要存在手机上获取
     private static String phone = UserUtil.getOnlyUser().getPhone();
     private static String password = UserUtil.getOnlyUser().getPassword();
 
@@ -90,6 +91,7 @@ public class MyInfoActivity extends AppCompatActivity implements View.OnClickLis
     private static final int CHOOSE_PHOTO = 2;  //选择照片
     private TakePictureManager takePictureManager;  //第三方类
     private ImageView head;
+    private SwipeRefreshLayout swipeRefreshLayout;
 
     //下面是各组件要填充的内容
     private String self_Text;       //自我介绍（节选）
@@ -112,6 +114,7 @@ public class MyInfoActivity extends AppCompatActivity implements View.OnClickLis
         //昵称
         textView_Name =(TextView)findViewById(R.id.text_nickname);
         View viewname=(View) findViewById(R.id.view_nickname);
+        swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeFresh);
         viewname.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
@@ -120,7 +123,13 @@ public class MyInfoActivity extends AppCompatActivity implements View.OnClickLis
                 startActivity(intent);
             }
         });
-
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                //每次下拉刷新的时候都重新通过网络请求初始化数据并刷新界面
+                initData();
+            }
+        });
         head = (ImageView) findViewById(R.id.head);
         //性别
         textView_Sex=(TextView)findViewById(R.id.editsex);
@@ -236,6 +245,8 @@ public class MyInfoActivity extends AppCompatActivity implements View.OnClickLis
                     self_sex = user.getSex();   //用户性别
                     //下面开始初始化各组件
                     changeView();
+                    //结束刷新
+                    swipeRefreshLayout.setRefreshing(false);
                 }
                 UserUtil.setOnlyUser(user);
 
@@ -405,7 +416,7 @@ public class MyInfoActivity extends AppCompatActivity implements View.OnClickLis
 
     private void displayImage(String imagePath) {
         if (imagePath != null) {
-            Glide.with(this).load(head_uri).diskCacheStrategy( DiskCacheStrategy.NONE) .skipMemoryCache(true).placeholder(R.mipmap.ic_launcher).into(head);
+            Glide.with(this).load(head_uri).diskCacheStrategy( DiskCacheStrategy.NONE) .skipMemoryCache(true).placeholder(R.mipmap.yinlin).into(head);
         } else {
             Toast.makeText(this, "failed to get image", Toast.LENGTH_SHORT).show();
         }

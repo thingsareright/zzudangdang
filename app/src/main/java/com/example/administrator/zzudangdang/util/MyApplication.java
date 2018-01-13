@@ -9,8 +9,9 @@ import android.content.res.Resources;
  */
 
 public class MyApplication extends Application {
-    public static Context context =null;
+    public static Context context;
     public static Resources resource =null;
+
     @Override
     public void onCreate() {
         super.onCreate();

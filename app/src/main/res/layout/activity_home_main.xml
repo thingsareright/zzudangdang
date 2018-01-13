@@ -36,7 +36,8 @@
                     android:layout_height="30dp"
                     android:orientation="horizontal"
                     android:background="@drawable/roundview"
-
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
                     android:gravity="center">
 
                     <ImageView

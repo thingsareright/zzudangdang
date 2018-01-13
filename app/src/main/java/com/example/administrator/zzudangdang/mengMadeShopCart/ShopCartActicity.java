@@ -89,6 +89,7 @@ public class ShopCartActicity extends AppCompatActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.shopcart);
         ButterKnife.bind(this);
+
         initData();
         initPtrFrame();
         initActionBar();

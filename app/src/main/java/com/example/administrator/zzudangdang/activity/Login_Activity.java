@@ -105,6 +105,8 @@ public class Login_Activity extends AppCompatActivity {
             public void run() {
                 if(user!=null){
                     UserUtil.setOnlyUser(user);
+                    Intent intent = new Intent(getApplicationContext(), Home_Activity.class);
+                    startActivity(intent);
                     finish();
                 }else{
                     Toast.makeText(MyApplication.getContext(),"用户或密码错误",Toast.LENGTH_SHORT).show();

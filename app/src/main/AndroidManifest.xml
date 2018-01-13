@@ -10,7 +10,7 @@
     <uses-permission android:name="android.permission.CAMERA" />
 
     <application
-        android:name=".util.MyApplication"
+        android:name="com.example.administrator.zzudangdang.util.MyApplication"
         android:allowBackup="true"
         android:icon="@drawable/dangdang"
         android:label="@string/app_name"

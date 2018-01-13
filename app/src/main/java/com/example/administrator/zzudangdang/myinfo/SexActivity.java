@@ -57,11 +57,11 @@ public class SexActivity extends AppCompatActivity {
             }
         });
         findViewById(R.id.returnsex).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        @Override
+        public void onClick(View v) {
+            finish();
+        }
+    });
     }
 
     private void sendRequestForChange(final int text) {
